@@ -1,5 +1,21 @@
 *, body, html{
    margin: 0;
    padding: 0;
-   font-family: 'Poppins', sans-serif;
+}
+
+.MuiButtonBase-root.MuiListItemButton-root.MuiListItemButton-gutters.MuiListItemButton-root.MuiListItemButton-gutters.css-16ac5r2-MuiButtonBase-root-MuiListItemButton-root {
+   padding: 16px 23px;
+}
+
+ul.MuiList-root.MuiList-padding.css-h4y409-MuiList-root {
+   padding-top: 145px;
+   
+   a{
+      text-decoration: none;
+      color: #20222E;
+
+      &.active, &.active li{
+         background-color: #F7F8FC;
+      }
+   }
 }
