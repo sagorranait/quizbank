@@ -15,10 +15,11 @@ import {
  import HailOutlinedIcon from '@mui/icons-material/HailOutlined';
  import ConnectWithoutContactOutlinedIcon from '@mui/icons-material/ConnectWithoutContactOutlined';
  import LiveHelpOutlinedIcon from '@mui/icons-material/LiveHelpOutlined';
+import Motivation from './Motivation';
 
 const Menu: React.FC = () => {
   return (
-   <div>
+   <>
       <Typography 
          sx={{padding: "16px 25px", color: '#3751FF', fontWeight: 800,}} 
          variant="h6" 
@@ -37,11 +38,11 @@ const Menu: React.FC = () => {
             end
          >
             <ListItem disablePadding>
-               <ListItemButton>
+               <ListItemButton sx={{fontWeight: 600,}}>
                   <ListItemIcon>
                      <PersonOutlinedIcon/>
                   </ListItemIcon>
-                  <ListItemText primary="My Profile" />
+                  <ListItemText primary="My Profile"/>
                   </ListItemButton>
             </ListItem>
          </NavLink>
@@ -121,7 +122,8 @@ const Menu: React.FC = () => {
             </ListItem>
          </NavLink>
       </List>
-   </div>
+      <Motivation/>
+   </>
   )
 }
 

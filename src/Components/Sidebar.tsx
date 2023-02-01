@@ -42,7 +42,7 @@ const Sidebar:React.FC<Props> = (props) => {
       variant="permanent"
       sx={{
          display: { xs: 'none', sm: 'block' },
-         '& .MuiDrawer-paper': { boxSizing: 'border-box', width: dwidth, borderRight: '0px' },
+         '& .MuiDrawer-paper': { boxSizing: 'border-box', width: dwidth, borderRight: '0px', justifyContent: 'space-between' },
       }}
       open
       >
