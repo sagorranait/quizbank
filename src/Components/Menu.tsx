@@ -20,7 +20,7 @@ const Menu: React.FC = () => {
   return (
    <div>
       <Typography 
-         sx={{padding: "16px 25px", color: '#3751FF', fontWeight: 700,}} 
+         sx={{padding: "16px 25px", color: '#3751FF', fontWeight: 800,}} 
          variant="h6" 
          noWrap 
          component="p"

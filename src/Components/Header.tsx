@@ -4,6 +4,7 @@ import {
    Toolbar, 
    IconButton, 
    Typography,
+   Button,
  } from '@mui/material';
  import MenuIcon from '@mui/icons-material/Menu';
  import HelpOutlineOutlinedIcon from '@mui/icons-material/HelpOutlineOutlined';
@@ -35,7 +36,7 @@ const Header: React.FC<Props> = (props) => {
           boxShadow: 'none',
         }}
       >
-        <Toolbar>
+        <Toolbar sx={{justifyContent: 'space-between',}}>
           <IconButton
             color="inherit"
             aria-label="open drawer"
@@ -85,6 +86,7 @@ const Header: React.FC<Props> = (props) => {
               Programming Knowledge <HelpOutlineOutlinedIcon sx={{fontSize: '13px', cursor: 'pointer'}}/>
             </Typography>
           </Typography>
+          <Button variant="contained" color='primary'>SIGN UP</Button>
         </Toolbar>
       </AppBar>
       {/* Sidebar Start */}
