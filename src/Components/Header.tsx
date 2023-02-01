@@ -86,7 +86,7 @@ const Header: React.FC<Props> = (props) => {
               Programming Knowledge <HelpOutlineOutlinedIcon sx={{fontSize: '13px', cursor: 'pointer'}}/>
             </Typography>
           </Typography>
-          <Button variant="contained" color='primary'>SIGN UP</Button>
+          <Button variant="contained" color='primary'>SIGN IN</Button>
         </Toolbar>
       </AppBar>
       {/* Sidebar Start */}
