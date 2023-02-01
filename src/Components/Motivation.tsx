@@ -17,17 +17,18 @@ const Motivation: React.FC = () => {
         borderRadius: '0px',
       }}
     >
-      <CardContent sx={{padding: '30px', paddingBottom: '0px'}}>
+      <Typography variant='inherit' sx={{fontSize: '70px', color: '#F2F3F7', height: '30px', paddingLeft: '8px'}}>"</Typography>
+      <CardContent sx={{padding: '0px 33px 0px',}}>
         <Typography 
           variant="inherit" 
           color="text.secondary"
-          sx={{textAlign: 'justify', color: '#333', fontSize: '16px', fontWeight: 500}}
+          sx={{textAlign: 'justify', color: '#434652', fontSize: '16px', fontWeight: 500}}
         >
-          Hard work will pay off later, laziness
+          Hard work will pay off later, laziness.
         </Typography>
       </CardContent>
       <CardHeader
-        sx={{padding: '10px 30px 25px',}}
+        sx={{padding: '10px 33px 25px',}}
         avatar={<Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">R</Avatar>}
         title="Adom Smith"
       />
