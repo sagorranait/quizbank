@@ -8,13 +8,12 @@ import { Outlet } from 'react-router-dom';
 import Header from './Components/Header';
 
 const drawerWidth = 240;
-const windowRef = () => window;
 
 const App: React.FC = () => {
   return (
     <Box sx={{ display: 'flex'}}>
       <CssBaseline />
-      <Header dwidth={drawerWidth} window={windowRef}/>
+      <Header dwidth={drawerWidth}/>
       <Box
         component="main"
         sx={{ 

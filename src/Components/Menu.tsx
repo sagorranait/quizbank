@@ -6,7 +6,8 @@ import {
    ListItem, 
    ListItemText, 
    ListItemIcon, 
-   ListItemButton 
+   ListItemButton, 
+   Typography
  } from '@mui/material';
  import PersonOutlinedIcon from '@mui/icons-material/PersonOutlined';
  import QuizOutlinedIcon from '@mui/icons-material/QuizOutlined';
@@ -18,6 +19,14 @@ import {
 const Menu: React.FC = () => {
   return (
    <div>
+      <Typography 
+         sx={{padding: "16px 25px", color: '#3751FF', fontWeight: 700,}} 
+         variant="h6" 
+         noWrap 
+         component="p"
+      >
+         QuizBank
+      </Typography>
       <Toolbar />
       <List>
          <NavLink
@@ -32,7 +41,7 @@ const Menu: React.FC = () => {
                   <ListItemIcon>
                      <PersonOutlinedIcon/>
                   </ListItemIcon>
-                     <ListItemText primary="My Profile" />
+                  <ListItemText primary="My Profile" />
                   </ListItemButton>
             </ListItem>
          </NavLink>
