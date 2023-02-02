@@ -29,7 +29,7 @@ const FaqAccordion: React.FC<AccordionProps> = (props) => {
          }}
       >
          <AccordionSummary aria-controls={`${control}-content`} id={`${control}-header`}>
-         <Typography>{title}</Typography>
+         <Typography sx={{fontSize: {xs: '16px'}, fontWeight: {xs:'600'}}}>{title}</Typography>
          </AccordionSummary>
          <AccordionDetails>
          <Typography>{description}</Typography>

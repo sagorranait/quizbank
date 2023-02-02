@@ -16,11 +16,12 @@ const Faq: React.FC = () => {
 
   return (
     <Grid container spacing={2}>
-      <Grid item xs={12} sm={6} md={6} lg={6}>
+      <Grid item xs={12} sm={12} md={12} lg={6}>
         <Box component='div'>
           <Typography 
             variant='h4'
             sx={{
+              fontSize: {xs: '28px'},
               fontWeight: 700,
               p: '30px 0 5px',
             }}
@@ -39,7 +40,7 @@ const Faq: React.FC = () => {
           <FaqAccordion 
             id="panel1" 
             control='panel1d' 
-            title='Collapsible Group Item #1' 
+            title='Poll or Survey Questions' 
             description='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget.'
             expanded={expanded}
             handleChange={handleChange}
@@ -47,7 +48,7 @@ const Faq: React.FC = () => {
           <FaqAccordion 
             id="panel2" 
             control='panel2d' 
-            title='Collapsible Group Item #2' 
+            title='How to reopen an expired game?' 
             description='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget.'
             expanded={expanded}
             handleChange={handleChange}
@@ -55,7 +56,7 @@ const Faq: React.FC = () => {
           <FaqAccordion 
             id="panel3" 
             control='panel3d' 
-            title='Collapsible Group Item #3' 
+            title='How do I make my content private?' 
             description='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget.'
             expanded={expanded}
             handleChange={handleChange}
@@ -63,7 +64,7 @@ const Faq: React.FC = () => {
           <FaqAccordion 
             id="panel4" 
             control='panel4d' 
-            title='Collapsible Group Item #4' 
+            title='How do I change the order of my questions?' 
             description='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget.'
             expanded={expanded}
             handleChange={handleChange}
@@ -71,7 +72,7 @@ const Faq: React.FC = () => {
           <FaqAccordion 
             id="panel5" 
             control='panel5d' 
-            title='Collapsible Group Item #5' 
+            title='Is there a character limit for questions?' 
             description='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget.'
             expanded={expanded}
             handleChange={handleChange}
@@ -79,7 +80,7 @@ const Faq: React.FC = () => {
           <FaqAccordion 
             id="panel6" 
             control='panel6d' 
-            title='Collapsible Group Item #6' 
+            title='How do I change the name of my quiz?' 
             description='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget.'
             expanded={expanded}
             handleChange={handleChange}
@@ -87,7 +88,7 @@ const Faq: React.FC = () => {
           <FaqAccordion 
             id="panel7" 
             control='panel7d' 
-            title='Collapsible Group Item #7' 
+            title='Can I add images to the answer options?' 
             description='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget.'
             expanded={expanded}
             handleChange={handleChange}
@@ -95,14 +96,14 @@ const Faq: React.FC = () => {
           <FaqAccordion 
             id="panel8" 
             control='panel8d' 
-            title='Collapsible Group Item #8' 
+            title='How do I save the results of my quiz?' 
             description='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget.'
             expanded={expanded}
             handleChange={handleChange}
           />
         </Box>
       </Grid>
-      <Grid item xs={12} sm={6} md={6} lg={6}>
+      <Grid item xs={12} sm={12} md={12} lg={6}>
         <Box 
           component='div'
           sx={{height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center'}}

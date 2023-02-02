@@ -29,7 +29,7 @@ const App: React.FC = () => {
         }}
       >
         <Toolbar />
-        <Box component="section" sx={{height: '850px'}}>
+        <Box component="section" sx={{height: {xs: 'auto', sm: 'auto', lg: '850px'}}}>
           <Outlet/>
         </Box>
         <Footer/>
