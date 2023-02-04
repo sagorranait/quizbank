@@ -6,6 +6,7 @@ import {
 } from '@mui/material';
 import FAQ from '../Assets/faq.png';
 import FaqAccordion from '../Components/FaqAccordion';
+import Title from '../Components/Title';
 
 const Faq: React.FC = () => {
   const [expanded, setExpanded] = React.useState<string | false>('panel1');
@@ -18,25 +19,7 @@ const Faq: React.FC = () => {
     <Grid container spacing={2}>
       <Grid item xs={12} sm={12} md={12} lg={6}>
         <Box component='div'>
-          <Typography 
-            variant='h4'
-            sx={{
-              fontSize: {xs: '28px'},
-              fontWeight: 700,
-              p: '30px 0 5px',
-            }}
-          >
-            Frequently Asked Questions
-          </Typography>
-          <Typography 
-            variant='inherit'
-            sx={{
-              color: '#ADAEB2',
-              pb: '25px'
-            }}
-          >
-            Here are some common questions about QuizBank.
-          </Typography>
+          <Title title='Frequently Asked Questions' subtitle='Here are some common questions about QuizBank.'/>
           <FaqAccordion 
             id="panel1" 
             control='panel1d' 
