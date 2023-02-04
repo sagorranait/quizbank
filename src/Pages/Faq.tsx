@@ -1,8 +1,7 @@
 import React from 'react';
 import {
   Grid, 
-  Box,
-  Typography
+  Box
 } from '@mui/material';
 import FAQ from '../Assets/faq.png';
 import FaqAccordion from '../Components/FaqAccordion';
