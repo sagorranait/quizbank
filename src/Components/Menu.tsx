@@ -11,7 +11,7 @@ import {
  } from '@mui/material';
  import PersonOutlinedIcon from '@mui/icons-material/PersonOutlined';
  import QuizOutlinedIcon from '@mui/icons-material/QuizOutlined';
- import LeaderboardOutlinedIcon from '@mui/icons-material/LeaderboardOutlined';
+ import EmojiEventsOutlinedIcon from '@mui/icons-material/EmojiEventsOutlined';
  import HailOutlinedIcon from '@mui/icons-material/HailOutlined';
  import ConnectWithoutContactOutlinedIcon from '@mui/icons-material/ConnectWithoutContactOutlined';
  import LiveHelpOutlinedIcon from '@mui/icons-material/LiveHelpOutlined';
@@ -70,7 +70,7 @@ const Menu: React.FC = () => {
             <ListItem disablePadding>
                <ListItemButton>
                <ListItemIcon>
-                  <LeaderboardOutlinedIcon/>
+                  <EmojiEventsOutlinedIcon/>
                </ListItemIcon>
                <ListItemText primary="Leader Board" />
                </ListItemButton>
