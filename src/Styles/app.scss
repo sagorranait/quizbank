@@ -53,9 +53,15 @@ ul.MuiList-root.MuiList-padding.css-h4y409-MuiList-root {
    }
 }
 
-.slick-slide {
-   width: 300px;
-   height: 100%;
-   min-height: 291px;
-   padding: 20px;
+.quizSlider{
+   .slick-slide {
+      width: 300px;
+      height: 100%;
+      min-height: 285px;
+      padding: 0px 20px 10px;
+   }
+}
+
+.css-618nwv-MuiLinearProgress-root-MuiMobileStepper-progress {
+   width: 100% !important;
 }
