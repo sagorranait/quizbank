@@ -33,7 +33,7 @@ const LeaderBoard: React.FC = () => {
         <Typography variant='h1' sx={{fontSize: '25px', fontWeight: 600}}>Leader Board</Typography>
         <Typography variant='caption' color='secondary.light'>Make your position today</Typography>
       </Box>
-      <Box component='div' sx={{width: '85%', m: '0px auto'}}>
+      <Box component='div' sx={{width: '85%', m: '25px auto 0px'}}>
         <LeadersTable title="You Position" rows={yous}/>
       </Box>
       <Box component='div' sx={{width: '85%', m: '20px auto'}}>

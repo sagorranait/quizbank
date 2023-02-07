@@ -1,11 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import reportWebVitals from './reportWebVitals';
-import { ThemeProvider } from '@mui/material/styles';
-import './Styles/app.scss';
 import theme from './theme';
+import { ThemeProvider } from '@mui/material/styles';
 import { RouterProvider } from 'react-router-dom';
 import { routes } from './routes';
+import './Styles/app.scss';
+import "slick-carousel/slick/slick.css"; 
+import "slick-carousel/slick/slick-theme.css";
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement

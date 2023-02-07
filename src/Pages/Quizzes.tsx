@@ -1,8 +1,14 @@
-import React from 'react'
+import React from 'react';
+import { Box } from '@mui/material';
+import QuizSlider from '../Components/QuizSlider';
 
 const Quizzes: React.FC = () => {
   return (
-    <div>Quizzes</div>
+    <>
+      <Box component='div'>
+          <QuizSlider/>
+      </Box>
+    </>
   )
 }
 
