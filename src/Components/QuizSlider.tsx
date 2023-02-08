@@ -4,7 +4,6 @@ import { Box, IconButton, MobileStepper, Typography } from '@mui/material';
 import NavigateBeforeOutlinedIcon from '@mui/icons-material/NavigateBeforeOutlined';
 import NavigateNextOutlinedIcon from '@mui/icons-material/NavigateNextOutlined';
 import SliderItem from './SliderItem';
-import LinearProgress from '@mui/material/LinearProgress';
 
 const QuizSlider: React.FC = () => {
   const slider = React.useRef<any>(null);

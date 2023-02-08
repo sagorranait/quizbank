@@ -32,6 +32,10 @@ const Motivation: React.FC = () => {
         avatar={<Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">R</Avatar>}
         title="Adom Smith"
       />
+      <Typography variant='subtitle2' sx={{textAlign: 'center', width: '100%', color: '#ADAEB2', pb: '10px'}}>
+        Developed By
+        <a href="https://www.linkedin.com/in/sagorranait" target="_blank" rel="noreferrer" style={{fontWeight: 600, paddingLeft: '5px'}}>Sagor Rana</a>
+      </Typography>   
     </Card>
   );
 }
