@@ -15,7 +15,10 @@ const SignIn: React.FC = () => {
         <Button fullWidth variant="contained" color='primary' sx={{pt: '10px', pb: '10px'}}>Send Message</Button>
       </Box>
       <SocialMedia/>
-      <Typography variant='body1'>Don’t have an account? <Link to='/sign-up'>Create an account</Link></Typography>
+      <Typography variant='body1'>
+        Don’t have an account? 
+        <Link to='/sign-up' style={{color: '#3751FF', textDecoration: 'underline',  marginLeft: '5px'}}>Create an account</Link>
+      </Typography>
   </FormWraper>
   );
 }
