@@ -31,8 +31,8 @@ const QuizItem: React.FC = () => {
         border: '1px solid rgba(55, 81, 255, 0.5)', 
         borderRadius: '25px', 
         textTransform: 'capitalize',
-        paddingLeft: '15px',
-        paddingRight: '15px',
+        paddingLeft: '12px',
+        paddingRight: '12px',
         mr: '5px'
       }}>Practice</Button>
     <Button size="small" sx={{

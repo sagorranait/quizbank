@@ -57,7 +57,7 @@ const ContactUs: React.FC = () => {
                   key={item.img}
                   src={`${item.img}`}
                   alt={item.title}
-                  style={{marginRight: '15px'}}
+                  style={{marginRight: '25px'}}
                 />
                 ))}
             </Box>

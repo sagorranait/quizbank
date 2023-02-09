@@ -9,6 +9,7 @@ import {
  import MenuIcon from '@mui/icons-material/Menu';
  import HelpOutlineOutlinedIcon from '@mui/icons-material/HelpOutlineOutlined';
 import Sidebar from './Sidebar';
+import { Link } from 'react-router-dom';
 
  const windowRef = () => window;
 
@@ -86,7 +87,9 @@ const Header: React.FC<Props> = (props) => {
               Programming Knowledge <HelpOutlineOutlinedIcon sx={{fontSize: '13px', cursor: 'pointer'}}/>
             </Typography>
           </Typography>
-          <Button variant="contained" color='primary'>SIGN IN</Button>
+          <Link to='/sign-in'>
+            <Button variant="contained" color='primary'>SIGN IN</Button>
+          </Link>
         </Toolbar>
       </AppBar>
       {/* Sidebar Start */}
