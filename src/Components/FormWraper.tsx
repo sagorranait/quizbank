@@ -11,6 +11,7 @@ const FormWraper: React.FC<FormWraperProps> = ({children}) => {
       <Box 
         component='div' 
         sx={{
+          width: '600px',
           textAlign: 'center',
           backgroundColor: '#FFF',
           boxShadow: '0px 5px 6px 0px rgb(137 137 137 / 24%)',

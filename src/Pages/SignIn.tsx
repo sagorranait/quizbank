@@ -12,7 +12,10 @@ const SignIn: React.FC = () => {
       <Box component='form'>
         <TextField id="standard-basic" variant="standard" label="Email" type='email' fullWidth sx={{m: '20px 0px 10px'}} />
         <TextField id="standard-basic" variant="standard" label="Password" type='password' fullWidth sx={{m: '20px 0px 25px'}} />
-        <Button fullWidth variant="contained" color='primary' sx={{pt: '10px', pb: '10px'}}>Send Message</Button>
+        <Box component='div' display='flex' alignItems='center' justifyContent='space-between'>
+          <Button variant="contained" color='primary' sx={{pt: '10px', pb: '10px', width: '72%'}}>Sign In</Button>
+          <Button variant="contained" color='primary' sx={{pt: '10px', pb: '10px'}}>Demo Sign In</Button>
+        </Box>
       </Box>
       <SocialMedia/>
       <Typography variant='body1'>
