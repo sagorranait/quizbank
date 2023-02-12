@@ -4,28 +4,23 @@ import { AreaChart, Area, XAxis, YAxis, ResponsiveContainer } from 'recharts';
 const data = [
    {
      name: 'HTML',
-     uv: 15,
-     mr: 15,
+     uv: 10,
    },
    {
      name: 'CSS',
-     uv: 15,
-     mr: 12,
+     uv: 8,
    },
    {
      name: 'Reactjs',
-     uv: 15,
-     mr: 10,
+     uv: 7,
    },
    {
      name: 'JavaScript',
-     uv: 15,
-     mr: 8,
+     uv: 9,
    },
    {
      name: 'Nodejs',
-     uv: 14,
-     mr: 4,
+     uv: 10,
    }
  ];
 
@@ -46,7 +41,7 @@ const MarkChart: React.FC = () => {
             axisLine={{ strokeWidth: 0 }} 
             tickLine={false}
           />
-         <YAxis dataKey='mr' axisLine={{ strokeWidth: 0 }} tickLine={false} />
+         <YAxis dataKey='uv' axisLine={{ strokeWidth: 0 }} tickLine={false} />
          <Area type="monotone" dataKey="uv" stroke="#8884d8" fill="#3751FF" />
       </AreaChart>
    </ResponsiveContainer>

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Box, Button, Typography, Avatar } from '@mui/material';
 import JavaScriptLogo from '../Assets/quiz/javascript.png';
+import { Link } from 'react-router-dom';
 
 const QuizItem: React.FC = () => {
   return (
@@ -27,19 +28,29 @@ const QuizItem: React.FC = () => {
       </Typography>
     </Box>
     <Box component='div'>
-      <Button size="small" sx={{
-        border: '1px solid rgba(55, 81, 255, 0.5)', 
-        borderRadius: '25px', 
-        textTransform: 'capitalize',
-        paddingLeft: '12px',
-        paddingRight: '12px',
-        mr: '5px'
-      }}>Practice</Button>
-    <Button size="small" sx={{
-      border: '1px solid rgba(55, 81, 255, 0.5)', 
-      borderRadius: '25px', 
-      textTransform: 'capitalize',
-    }}>Start</Button>
+      <Link to={'/html/practice'}>
+        <Button 
+          size="small" 
+          sx={{
+            border: '1px solid rgba(55, 81, 255, 0.5)', 
+            borderRadius: '25px', 
+            textTransform: 'capitalize',
+            paddingLeft: '12px',
+            paddingRight: '12px',
+            mr: '5px'
+          }}
+        >Practice</Button>
+      </Link>
+      <Link to={'/html/start'}>
+        <Button 
+          size="small" 
+          sx={{
+            border: '1px solid rgba(55, 81, 255, 0.5)', 
+            borderRadius: '25px', 
+            textTransform: 'capitalize',
+          }}
+        >Start</Button>
+      </Link>
     </Box>
    </Box>
   )

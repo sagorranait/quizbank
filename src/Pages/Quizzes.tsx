@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Button, Typography, Grid } from '@mui/material';
+import { Box, Typography, Grid } from '@mui/material';
 import QuizSlider from '../Components/QuizSlider';
 import QuizItem from '../Components/QuizItem';
 
@@ -10,9 +10,8 @@ const Quizzes: React.FC = () => {
           <QuizSlider/>
       </Box>
       <Box component='div' sx={{p: '40px 20px 20px'}}>
-          <Box component='div' sx={{display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', pb: '20px'}}>
+          <Box component='div' sx={{pb: '20px'}}>
             <Typography variant='h6'>All Quizzes</Typography>
-            <Button variant="outlined">View All</Button>
           </Box>
           <Box component='div'>
             <Grid container spacing={3}>

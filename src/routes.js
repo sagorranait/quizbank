@@ -8,13 +8,15 @@ import ContactUs from "./Pages/ContactUs";
 import LeaderBoard from "./Pages/LeaderBoard";
 import SignIn from "./Pages/SignIn";
 import SignUp from "./Pages/SignUp";
+import Exam from "./Pages/Exam";
 
 const routes = createBrowserRouter([
    {
       path: '/',
       element:  <App/>,
       children: [
-         { index: true, element: <Quizzes/> },
+         { index: true, element: <Quizzes/>},
+         { path: '/:quiz/:start', element: <Exam/> },
          { path: 'faq', element: <Faq/> },
          { path: 'profile', element: <Profile/> },
          { path: 'about-us', element: <AboutUs/> },
