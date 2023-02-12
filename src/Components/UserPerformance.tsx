@@ -6,46 +6,24 @@ import {
   Typography
 } from '@mui/material';
 import StarIcon from '@mui/icons-material/Star';
-import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 
 import Reward from '../Assets/reward.png';
 import CSSLogo from '../Assets/quiz/css.png';
 import HTMLogo from '../Assets/quiz/html.png';
 import ReactLogo from '../Assets/quiz/react.png';
 import JavaScriptLogo from '../Assets/quiz/javascript.png';
-const data = [
-   {
-     name: 'HTML',
-     uv: 15,
-   },
-   {
-     name: 'CSS',
-     uv: 15,
-   },
-   {
-     name: 'Reactjs',
-     uv: 15,
-   },
-   {
-     name: 'JavaScript',
-     uv: 15,
-   },
-   {
-     name: 'Nodejs',
-     uv: 14,
-   }
- ];
+import MarkChart from './MarkChart';
 
 const UserPerformance: React.FC = () => {
   return (
-   <Box component='div' className='user-quiz-performance' sx={{p: '60px 50px 0px'}}>
+   <Box component='div' className='user-quiz-performance' sx={{p: '50px 50px 0px'}}>
       <Grid container spacing={2}>
         <Grid item xs={12} sm={12} md={3} lg={3}>
         <Box 
           component='div' 
           sx={{
             width: '100%',
-            p: '20px',
+            p: '111px 20px',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
@@ -102,21 +80,7 @@ const UserPerformance: React.FC = () => {
               </Box>
             </Box>
             <Box component='div' className='chart' width="100%">
-            <ResponsiveContainer width="100%" aspect={4}>
-              <AreaChart
-                  data={data}
-                  margin={{
-                    top: 10,
-                    right: 30,
-                    left: 0,
-                    bottom: 0,
-                  }}
-              >
-                <XAxis dataKey="name" />
-                <YAxis/>
-                <Area type="monotone" dataKey="uv" stroke="#8884d8" fill="#3751FF" />
-              </AreaChart>
-              </ResponsiveContainer>
+              <MarkChart/>
             </Box>
           </Box>
         </Grid>
