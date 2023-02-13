@@ -1,34 +1,86 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { 
    Box, 
    Button, 
-   Avatar, 
-   Typography, 
-   List, 
-   ListItem, 
-   ListItemText,
-   Divider
+   Typography,
+   MobileStepper,
+   FormControl,
+   RadioGroup,
+   FormControlLabel,
+   Radio
 } from '@mui/material';
-import BeenhereOutlinedIcon from '@mui/icons-material/BeenhereOutlined';
-import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
-import AccessTimeOutlinedIcon from '@mui/icons-material/AccessTimeOutlined';
-import FormatListBulletedOutlinedIcon from '@mui/icons-material/FormatListBulletedOutlined';
-import KeyboardBackspaceOutlinedIcon from '@mui/icons-material/KeyboardBackspaceOutlined';
+import { useNavigate } from 'react-router-dom';
+
+const steps = ['1', '2', '3','4', '5', '6','7', '8', '9','10'];
+
+const quizzes = [
+   { title: 'Using an attribute selector, how would you select an <a> element with a "title" attribute?', options: ['a[title]{...}', 'a > title {...}', 'a.title {...}', 'a=title {...}'] },
+   { title: ' Using an attribute selector, 2?', options: ['a[title]{...}1', 'a > title {...}1', 'a.title {...}1', 'a=title {...}1'] },
+   { title: ' Using an attribute selector, 3?', options: ['a[title]{...}', 'a > title {...}', 'a.title {...}', 'a=title {...}'] },
+   { title: ' Using an attribute selector, 4?', options: ['a[title]{...}', 'a > title {...}', 'a.title {...}', 'a=title {...}'] },
+   { title: ' Using an attribute selector, 5?', options: ['a[title]{...}', 'a > title {...}', 'a.title {...}', 'a=title {...}'] },
+   { title: ' Using an attribute selector, 6?', options: ['a[title]{...}', 'a > title {...}', 'a.title {...}', 'a=title {...}'] },
+   { title: ' Using an attribute selector, 7?', options: ['a[title]{...}', 'a > title {...}', 'a.title {...}', 'a=title {...}'] },
+   { title: ' Using an attribute selector, 8?', options: ['a[title]{...}', 'a > title {...}', 'a.title {...}', 'a=title {...}'] },
+   { title: ' Using an attribute selector, 9?', options: ['a[title]{...}', 'a > title {...}', 'a.title {...}', 'a=title {...}'] },
+   { title: ' Using an attribute selector, 10?', options: ['a[title]{...}', 'a > title {...}', 'a.title {...}', 'a=title {...}'] }
+];
 
 const Exam: React.FC = () => {
+   const navigate = useNavigate();
+   const [activeStep, setActiveStep] = React.useState(0);
+   const [skipped, setSkipped] = React.useState(new Set<number>());
+
+   const [value, setValue] = React.useState('');
+
+   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+      setValue((event.target as HTMLInputElement).value);
+   };
+
+   const isStepSkipped = (step: number) => {
+      return skipped.has(step);
+   };
+
+   const handleNext = () => {
+      let newSkipped = skipped;
+
+      if (isStepSkipped(activeStep)) {
+         newSkipped = new Set(newSkipped.values());
+         newSkipped.delete(activeStep);
+      }
+
+      setActiveStep((prevActiveStep) => prevActiveStep + 1);
+      setSkipped(newSkipped);
+
+      if (activeStep === 9) {
+         navigate('/quiz/html/completed');         
+      }
+   };
+
+  const handleBack = () => {
+    setActiveStep((prevActiveStep) => prevActiveStep - 1);
+  };
+
+  const handleSkip = () => {
+      setActiveStep((prevActiveStep) => prevActiveStep + 1);
+      setSkipped((prevSkipped) => {
+         const newSkipped = new Set(prevSkipped.values());
+         newSkipped.add(activeStep);
+         return newSkipped;
+      });
+
+      if (activeStep === 9) {
+         navigate('/quiz/html/completed');         
+      }
+  };
+
   return (
    <Box component='div' sx={{display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%'}}>
       <Box component='div'>
-         <Link to='/'>
-            <Button 
-               variant="text" 
-               startIcon={<KeyboardBackspaceOutlinedIcon />} 
-               sx={{ color: '#00000099', fontWeight: 600, mb: '15px'}}
-            >
-               Quizzes
-            </Button>
-         </Link>
+         <Typography 
+            variant='h6' 
+            sx={{p: '8px 0px', textAlign: 'center', mb: '15px', backgroundColor: '#F7F8FC'}}
+         >Reactjs Quiz</Typography>
          <Box 
             component='div'
             sx={{
@@ -39,82 +91,49 @@ const Exam: React.FC = () => {
                p: '30px'
             }}
          >
-            <Avatar
-               alt="Remy Sharp"
-               src="/static/images/avatar/1.jpg"
-               sx={{ width: 56, height: 56, borderRadius: 0, }}
-            />
-            <Typography variant='h6' sx={{p: '8px 0px'}}>Reactjs Quiz</Typography>
-            <Typography variant='body2'>Topics: Advanced React, Component Side Effects, Rendering React Elements, Stateful Components and User Interactivity</Typography>
-            <Typography variant='body2' sx={{p: '13px 0px 5px'}}>10 people took this</Typography>
-            <List sx={{ height: 'auto' }}>
-               <ListItem sx={{p: '5px 0px 0px'}}>
-                  <FormatListBulletedOutlinedIcon sx={{color: '#00000099', pr: '5px'}} />
-                  <ListItemText primary="10 multiple choice questions" sx={{fontSize: '12px'}} />
-               </ListItem>
-               <ListItem sx={{p: '5px 0px 0px'}}>
-                  <AccessTimeOutlinedIcon sx={{color: '#00000099', pr: '5px'}} />
-                  <ListItemText primary="1.5 minutes per question" sx={{fontSize: '12px'}} />
-               </ListItem>
-               <ListItem sx={{p: '5px 0px 5px'}}>
-                  <BeenhereOutlinedIcon sx={{color: '#00000099', pr: '5px'}} />
-                  <ListItemText primary="Score in the top 30% to earn a badge" sx={{fontSize: '12px'}} />
-               </ListItem>
-            </List>
-            <Divider light />
-            <Typography variant='h6' sx={{p: '8px 0px 0px'}}>Before you start</Typography>
-            <List sx={{ height: 'auto' }}>
-               <ListItem sx={{p: '0px'}}>
-                  <FiberManualRecordIcon sx={{color: '#333', pr: '10px'}} />
-                  <ListItemText primary="You must complete this assessment in one session — make sure your internet is reliable." sx={{fontSize: '12px'}} />
-               </ListItem>
-               <ListItem sx={{p: '5px 0px 0px'}}>
-                  <FiberManualRecordIcon sx={{color: '#333', pr: '10px'}} />
-                  <ListItemText primary="You can retake this assessment once if you don’t earn a badge." sx={{fontSize: '12px'}} />
-               </ListItem>
-               <ListItem sx={{p: '5px 0px 5px'}}>
-                  <FiberManualRecordIcon sx={{color: '#333', pr: '10px'}} />
-                  <ListItemText primary="We won’t show your results to anyone without your permission." sx={{fontSize: '12px'}} />
-               </ListItem>
-            </List>
-            <Box 
-               component='div' 
-               sx={{
-                  display: 'flex', 
-                  alignItems: 'center', 
-                  justifyContent: 'space-between',
-                  mt: '5px',
-                  pt: '15px',
-                  borderTop: '1px solid #ddd',
-               }}
-            >
-               <Typography variant='body2'>Language: <b>English</b></Typography>
-               <Box component='div'>
-                  <Link to={'/html/practice'}>
-                  <Button 
-                     size="small" 
-                     sx={{
-                        border: '1px solid rgba(55, 81, 255, 0.5)', 
-                        borderRadius: '25px', 
-                        textTransform: 'capitalize',
-                        paddingLeft: '12px',
-                        paddingRight: '12px',
-                        mr: '10px'
-                     }}
-                  >Practice</Button>
-                  </Link>
-                  <Link to={'/html/start'}>
-                  <Button
-                     variant="contained"
-                     size="small" 
-                     sx={{
-                        border: '1px solid rgba(55, 81, 255, 0.5)', 
-                        borderRadius: '25px', 
-                        textTransform: 'capitalize',
-                     }}
-                  >Start</Button>
-                  </Link>
-               </Box>
+            <Box sx={{ width: '100%' }}>
+               <React.Fragment>
+                  <Box component='div'>
+                     <Typography variant='inherit' sx={{fontSize: '18px', pb: '15px'}}>{quizzes[activeStep].title}</Typography>
+                     <FormControl>
+                        <RadioGroup
+                           aria-labelledby="demo-controlled-radio-buttons-group"
+                           name="controlled-radio-buttons-group"
+                           value={value}
+                           onChange={handleChange}
+                        >
+                           {quizzes[activeStep].options?.map(option => <FormControlLabel value={option} control={<Radio />} label={option} />)}
+                        </RadioGroup>
+                     </FormControl>
+                  </Box>
+                  <Box sx={{ pt: 2, display: 'flex', alignItems: 'center', justifyContent: 'flex-end', gap: 1 }}>
+                     <Typography variant='inherit'>Q{activeStep + 1}/10</Typography>
+                     <MobileStepper
+                        variant="progress"
+                        steps={10}
+                        position="static"
+                        activeStep={activeStep}
+                        sx={{ maxWidth: 630, flexGrow: 1 }}
+                        nextButton={undefined}
+                        backButton={undefined}
+                     />
+                     <Box component='div'/>
+                        <Button
+                           color="inherit"
+                           disabled={activeStep === 0}
+                           onClick={handleBack}
+                           sx={{ mr: 1 }}
+                        >
+                           Back
+                        </Button>
+                        <Button color="inherit" onClick={handleSkip} sx={{ mr: 1 }}>
+                           Skip
+                        </Button>
+                        <Button onClick={handleNext}>
+                           {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
+                        </Button>
+                  </Box>
+               </React.Fragment>
             </Box>
          </Box>
       </Box>

@@ -28,7 +28,7 @@ const QuizItem: React.FC = () => {
       </Typography>
     </Box>
     <Box component='div'>
-      <Link to={'/html/practice'}>
+      <Link to={'/quiz/html'}>
         <Button 
           size="small" 
           sx={{
@@ -41,7 +41,7 @@ const QuizItem: React.FC = () => {
           }}
         >Practice</Button>
       </Link>
-      <Link to={'/html/start'}>
+      <Link to={'/quiz/html'}>
         <Button 
           size="small" 
           sx={{

@@ -8,7 +8,9 @@ import ContactUs from "./Pages/ContactUs";
 import LeaderBoard from "./Pages/LeaderBoard";
 import SignIn from "./Pages/SignIn";
 import SignUp from "./Pages/SignUp";
+import ExamDetails from "./Pages/ExamDetails";
 import Exam from "./Pages/Exam";
+import ExamCompleted from "./Pages/ExamCompleted";
 
 const routes = createBrowserRouter([
    {
@@ -16,14 +18,16 @@ const routes = createBrowserRouter([
       element:  <App/>,
       children: [
          { index: true, element: <Quizzes/>},
-         { path: '/:quiz/:start', element: <Exam/> },
-         { path: 'faq', element: <Faq/> },
+         { path: 'sign-in', element: <SignIn/> },
+         { path: 'sign-up', element: <SignUp/> },
          { path: 'profile', element: <Profile/> },
+         { path: 'faq', element: <Faq/> },
          { path: 'about-us', element: <AboutUs/> },
          { path: 'contact-us', element: <ContactUs/> },
          { path: 'leader-board', element: <LeaderBoard/> },
-         { path: 'sign-in', element: <SignIn/> },
-         { path: 'sign-up', element: <SignUp/> }
+         { path: '/quiz/:quiz/start', element: <Exam/>},
+         { path: '/quiz/:quiz', element: <ExamDetails/>},
+         { path: '/quiz/:quiz/completed', element: <ExamCompleted/>},
       ],
    },
 ]);
