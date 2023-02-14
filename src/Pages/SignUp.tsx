@@ -7,8 +7,8 @@ import { Link } from 'react-router-dom';
 const SignUp: React.FC = () => {
   return (
     <FormWraper>
-      <Typography variant='h5' sx={{fontWeight: 800, mb: 1}}>Create an Account</Typography>
-      <Typography variant='body1'>Even though registration just takes a few seconds, <br/> it provides you complete control over your purchase.</Typography>
+      <Typography variant='h5' sx={{fontWeight: 800, mb: 1, fontSize: {xs: '18px', sm: '18px', md: '23px', lg: '28px'}}}>Create an Account</Typography>
+      <Typography variant='body1' sx={{fontSize: {xs: '15px', sm: '15px', md: '15px', lg: '16px'}}}>Even though registration just takes a few seconds, it provides you complete control over your purchase.</Typography>
       <Box component='form'>
         <TextField id="standard-basic" variant="standard" label="Name" type='text' fullWidth sx={{m: '20px 0px 10px'}} />
         <TextField id="standard-basic" variant="standard" label="Email" type='email' fullWidth sx={{m: '20px 0px 10px'}} />

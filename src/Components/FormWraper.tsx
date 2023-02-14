@@ -11,11 +11,12 @@ const FormWraper: React.FC<FormWraperProps> = ({children}) => {
       <Box 
         component='div' 
         sx={{
-          width: '600px',
+          width: {xs: '100%', sm: '100%', md: '600px', lg: '600px'},
           textAlign: 'center',
           backgroundColor: '#FFF',
           boxShadow: '0px 5px 6px 0px rgb(137 137 137 / 24%)',
-          p: '50px'
+          p: {xs: '20px', sm: '20px', md: '50px', lg: '50px'},
+          mb: {xs: '0px', sm: '0px', md: '110px', lg: '0px'}
         }}
       >
          {children}

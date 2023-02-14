@@ -15,8 +15,9 @@ const SocialMedia: React.FC = () => {
             display: 'flex', 
             alignItems: 'center', 
             justifyContent: 'space-between', 
+            flexDirection: {xs: 'column', sm: 'column', md: 'row', lg: 'row'},
             gap: 2, 
-            mt: '10px'
+            mt: '15px'
          }}
       >
          <Button 
