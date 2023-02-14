@@ -28,6 +28,7 @@ const Title:React.FC<TitleProps> = (props) => {
               color: '#ADAEB2',
               pb: '25px',
               fontSize: {xs: '14px', sm: '16px', md: '16px', lg: '16px'},
+              textAlign: 'justify'
             }}
           >
             {subtitle}
