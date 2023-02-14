@@ -54,7 +54,7 @@ const ExamDetails: React.FC = () => {
                </ListItem>
                <ListItem sx={{p: '5px 0px 0px'}}>
                   <AccessTimeOutlinedIcon sx={{color: '#00000099', pr: '5px'}} />
-                  <ListItemText primary="1.5 minutes per question" sx={{fontSize: '12px'}} />
+                  <ListItemText primary="Total 10 minutes, Per question you will get 1 minute." sx={{fontSize: '12px'}} />
                </ListItem>
                <ListItem sx={{p: '5px 0px 5px'}}>
                   <BeenhereOutlinedIcon sx={{color: '#00000099', pr: '5px'}} />

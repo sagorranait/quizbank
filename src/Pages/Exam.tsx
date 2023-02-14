@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { 
    Box, 
    Button, 
@@ -28,8 +28,18 @@ const quizzes = [
 
 const Exam: React.FC = () => {
    const navigate = useNavigate();
-   const [activeStep, setActiveStep] = React.useState(0);
-   const [skipped, setSkipped] = React.useState(new Set<number>());
+   const [timeLeft, setTimeLeft] = useState(600);
+   const [activeStep, setActiveStep] = useState(0);
+   const [skipped, setSkipped] = useState(new Set<number>());
+
+
+   useEffect(() => {
+      if (timeLeft <= 0) return;
+      const timer = setTimeout(() => {
+        setTimeLeft(timeLeft - 1);
+      }, 1000);
+      return () => clearTimeout(timer);
+    }, [timeLeft]);
 
    const [value, setValue] = React.useState('');
 
@@ -77,10 +87,13 @@ const Exam: React.FC = () => {
   return (
    <Box component='div' sx={{display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%'}}>
       <Box component='div'>
-         <Typography 
-            variant='h6' 
-            sx={{p: '8px 0px', textAlign: 'center', mb: '15px', backgroundColor: '#F7F8FC'}}
-         >Reactjs Quiz</Typography>
+         <Box component='div' sx={{display: 'flex', alignItems: 'center', justifyContent: 'space-between'}}>
+            <Typography 
+               variant='h6' 
+               sx={{p: '8px 0px', textAlign: 'center', mb: '15px', backgroundColor: '#F7F8FC', width: '94%',}}
+            >Reactjs Quiz</Typography>
+            <Typography>{Math.floor(timeLeft / 60)} : {timeLeft % 60}s</Typography>
+         </Box>
          <Box 
             component='div'
             sx={{
