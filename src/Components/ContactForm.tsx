@@ -9,7 +9,7 @@ const ContactForm: React.FC = () => {
   return (
    <Box 
       component='form'
-      sx={{p: '45px 200px'}}
+      sx={{p: {xs: '35px 0px 15px', sm: '35px 0px 15px', md: '35px 0px', lg: '45px 200px'}}}
    >
       <Box component='div' sx={{display: 'flex', justifyContent: 'space-between'}}>
          <TextField id="standard-basic" variant="standard" label="First Name" type='text' fullWidth  sx={{mr: '20px'}} />

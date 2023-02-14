@@ -6,6 +6,7 @@ import {
   ListItem,
   ListItemText,
   Typography,
+  Avatar,
 } from '@mui/material';
 import Title from '../Components/Title';
 import ContactForm from '../Components/ContactForm';
@@ -53,11 +54,11 @@ const ContactUs: React.FC = () => {
               component='div' 
               sx={{display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap'}}>
               {itemData.map((item) => (
-                <img
+                <Avatar
                   key={item.img}
                   src={`${item.img}`}
                   alt={item.title}
-                  style={{marginRight: '25px'}}
+                  sx={{ width: '100px', borderRadius: 0, mr: {xs: '35px', sm: '35px', md: '22px', lg: '35px'}, mb: '15px' }}
                 />
                 ))}
             </Box>
