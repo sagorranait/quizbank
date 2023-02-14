@@ -1,7 +1,8 @@
 import React from 'react';
 import {
   Grid, 
-  Box
+  Box,
+  Avatar 
 } from '@mui/material';
 import FAQ from '../Assets/faq.png';
 import FaqAccordion from '../Components/FaqAccordion';
@@ -15,7 +16,7 @@ const Faq: React.FC = () => {
    };
 
   return (
-    <Grid container spacing={2}>
+    <Grid container spacing={2} sx={{flexDirection: {xs: 'column-reverse', sm: 'column-reverse', md: 'column-reverse', lg: 'row'}}}>
       <Grid item xs={12} sm={12} md={12} lg={6}>
         <Box component='div'>
           <Title title='Frequently Asked Questions' subtitle='Here are some common questions about QuizBank.'/>
@@ -88,9 +89,20 @@ const Faq: React.FC = () => {
       <Grid item xs={12} sm={12} md={12} lg={6}>
         <Box 
           component='div'
-          sx={{height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center'}}
+          sx={{
+            height: '100%', 
+            display: 'flex', 
+            alignItems: 'center', 
+            justifyContent: 'center',
+          }}
         >
-            <img src={FAQ} alt="FAQ" />
+          <Avatar src={FAQ} alt="FAQ" 
+            sx={{
+              width: {xs: '270px', sm: '370px', md: '450px', lg: '450px'}, 
+              height: {xs: '270px', sm: '370px', md: '450px', lg: '450px'}, 
+              borderRadius: 0
+            }} 
+          />
         </Box>
       </Grid>
     </Grid>

@@ -15,7 +15,7 @@ const Title:React.FC<TitleProps> = (props) => {
       <Typography 
             variant='h4'
             sx={{
-              fontSize: {xs: '28px'},
+              fontSize: {xs: '18px', sm: '25px', md: '28px', lg: '28px'},
               fontWeight: 700,
               p: '30px 0 8px',
             }}
@@ -26,7 +26,8 @@ const Title:React.FC<TitleProps> = (props) => {
             variant='inherit'
             sx={{
               color: '#ADAEB2',
-              pb: '25px'
+              pb: '25px',
+              fontSize: {xs: '14px', sm: '16px', md: '16px', lg: '16px'},
             }}
           >
             {subtitle}

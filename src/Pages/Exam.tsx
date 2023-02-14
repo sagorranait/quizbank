@@ -115,7 +115,7 @@ const Exam: React.FC = () => {
                            value={value}
                            onChange={handleChange}
                         >
-                           {quizzes[activeStep].options?.map(option => <FormControlLabel value={option} control={<Radio />} label={option} />)}
+                           {quizzes[activeStep].options?.map((option, index) => <FormControlLabel key={index} value={option} control={<Radio />} label={option} />)}
                         </RadioGroup>
                      </FormControl>
                   </Box>

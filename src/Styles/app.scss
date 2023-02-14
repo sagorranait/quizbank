@@ -69,3 +69,29 @@ ul.MuiList-root.MuiList-padding.css-h4y409-MuiList-root {
 .css-618nwv-MuiLinearProgress-root-MuiMobileStepper-progress {
    width: 100% !important;
 }
+
+
+// Media Query for CSS
+/* Responsive Media Query */
+@media only screen and (max-width: 575.98px) {
+   ul.MuiList-root.MuiList-padding.css-h4y409-MuiList-root {
+      height: 450px;
+   }
+}
+@media screen and (min-width: 576px) and (max-width: 767.99px) {
+   ul.MuiList-root.MuiList-padding.css-h4y409-MuiList-root {
+      height: 450px;
+   }
+}
+@media screen and (min-width: 768px) and (max-width: 992.99px) {
+   ul.MuiList-root.MuiList-padding.css-h4y409-MuiList-root {
+      height: 450px;
+   }
+}
+@media screen and (min-width: 993px) and (max-width: 1200.99px) {
+   ul.MuiList-root.MuiList-padding.css-h4y409-MuiList-root {
+      height: 450px;
+   }
+}
+@media screen and (min-width: 1201px) and (max-width: 1399.99px) {}
+/* Responsive Media Query */

@@ -35,6 +35,7 @@ const Header: React.FC<Props> = (props) => {
           backgroundColor: '#F7F8FC',
           color: '#C9CBD7',
           boxShadow: 'none',
+          pr: '0px !important'
         }}
       >
         <Toolbar sx={{justifyContent: 'space-between',}}>
