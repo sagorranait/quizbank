@@ -77,21 +77,62 @@ ul.MuiList-root.MuiList-padding.css-h4y409-MuiList-root {
    ul.MuiList-root.MuiList-padding.css-h4y409-MuiList-root {
       height: 450px;
    }
+   .css-1lniyfm-MuiGrid-root>.MuiGrid-item {
+      padding-left: 10px !important;
+      flex-basis: 100% !important;
+  }
+  .quizSlider .slick-slide {
+      padding: 0px 0px 10px;
+   }
+
+
+   .slick-slider {
+      width: 272px;
+      height: 272px;
+      margin: 0 auto;
+  }
+
+  .css-yayxwl-MuiPaper-root-MuiCard-root {
+   min-width: 257px !important;
+   width: 257px !important;
+   margin-left: 10px;
+}
+
+
+
 }
 @media screen and (min-width: 576px) and (max-width: 767.99px) {
    ul.MuiList-root.MuiList-padding.css-h4y409-MuiList-root {
       height: 450px;
+   }
+   .css-1lniyfm-MuiGrid-root>.MuiGrid-item {
+      padding-left: 10px !important; 
+      flex-basis: 100% !important;
+  }
+  .quizSlider .slick-slide {
+      padding: 0px 0px 10px;
    }
 }
 @media screen and (min-width: 768px) and (max-width: 992.99px) {
    ul.MuiList-root.MuiList-padding.css-h4y409-MuiList-root {
       height: 450px;
    }
+   .css-1lniyfm-MuiGrid-root>.MuiGrid-item {
+      padding-left: 10px !important;
+      flex-basis: 100% !important;
+  }
+  .quizSlider .slick-slide {
+      padding: 0px 0px 10px;
+   }
 }
 @media screen and (min-width: 993px) and (max-width: 1200.99px) {
    ul.MuiList-root.MuiList-padding.css-h4y409-MuiList-root {
       height: 450px;
    }
+   .css-1lniyfm-MuiGrid-root>.MuiGrid-item {
+      padding-left: 10px !important;
+      flex-basis: 100% !important;
+  }
 }
 @media screen and (min-width: 1201px) and (max-width: 1399.99px) {}
 /* Responsive Media Query */

@@ -16,9 +16,48 @@ const QuizSlider: React.FC = () => {
       slidesToShow: 5,
       swipeToSlide: true,
       variableWidth: true,
+      responsive: [
+        {
+          breakpoint: 480,
+          settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1
+          }
+        },
+        {
+          breakpoint: 320,
+          settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1
+          }
+        },
+        {
+          breakpoint: 600,
+          settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            initialSlide: 1
+          }
+        },
+        {
+          breakpoint: 764,
+          settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            initialSlide: 1
+          }
+        },
+        {
+          breakpoint: 1024,
+          settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1,
+          }
+        }        
+      ],
       afterChange: function(index : number) {
         setActiveStep(index+1);
-      }
+      },
     };
 
   return (
@@ -35,8 +74,17 @@ const QuizSlider: React.FC = () => {
           <SliderItem/>
           <SliderItem/>
         </Slider>
-        <Box component='div' sx={{display: 'flex', alignItems: 'center', gap: '20px', p: '0px 20px'}}>
-          <Box sx={{ width: '80%', mr: 1 }}>
+        <Box 
+          component='div' 
+          sx={{
+            display: 'flex', 
+            alignItems: 'center', 
+            gap: {xs: '12px', sm: '12px', md: '20px', lg:'20px'}, 
+            p: '0px 20px',
+            justifyContent: {xs: 'center', sm: 'center', md: 'flex-start', lg: 'flex-start'}
+          }}
+        >
+          <Box sx={{ width: {xs: '70px', sm: '70px', md: '75%', lg: '80%'}, mr: 1 }}>
             {/* <LinearProgress variant="determinate" value={activeStep+50}  /> */}
             <MobileStepper
                 variant="progress"

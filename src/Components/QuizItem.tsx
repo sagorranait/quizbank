@@ -7,12 +7,15 @@ const QuizItem: React.FC = () => {
   return (
    <Box sx={{ 
     display: 'flex', 
-    flexDirection: 'row',
+    flexDirection: {xs: 'column', sm: 'column', md: 'column', lg: 'column', xl: 'row'},
     alignItems: 'center',
     gap: 2,
     borderRadius: '15px', 
     boxShadow: '0px 2px 6px 0px rgb(137 137 137 / 24%)' ,
-    p: '15px'
+    p: '15px',
+    maxWidth: {xs: '260px', sm: '205px', md: '100%', lg: '100%'},
+    width: {xs: '245px', sm: '205px', md: '100%', lg: '100%'},
+    margin: {xs: '0 auto', sm: '0 auto', md: '0', lg: '0'}
   }}>
     <Avatar
       alt="JavaScriptLogo"

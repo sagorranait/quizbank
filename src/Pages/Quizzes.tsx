@@ -11,10 +11,10 @@ const Quizzes: React.FC = () => {
       </Box>
       <Box component='div' sx={{p: '40px 20px 20px'}}>
           <Box component='div' sx={{pb: '20px'}}>
-            <Typography variant='h6'>All Quizzes</Typography>
+            <Typography variant='h6' sx={{textAlign: {xs: 'center', sm: 'center', md: 'left', lg: 'left'}}}>All Quizzes</Typography>
           </Box>
           <Box component='div'>
-            <Grid container spacing={3}>
+            <Grid container spacing={3} sx={{flexDirection: {xs: 'column', sm:'row', md: 'row', lg:'row'}}}>
               <Grid item xs={6} sm={6} md={4} lg={3}>
                 <QuizItem/>
               </Grid>
