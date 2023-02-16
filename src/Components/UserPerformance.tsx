@@ -16,14 +16,14 @@ import MarkChart from './MarkChart';
 
 const UserPerformance: React.FC = () => {
   return (
-   <Box component='div' className='user-quiz-performance' sx={{p: '50px 50px 0px'}}>
+   <Box component='div' className='user-quiz-performance' sx={{p: {xs: '0px', sm: '0px', md: '70px 50px 0px', lg: '20px 50px 0px', xl: '50px 50px 0px',}}}>
       <Grid container spacing={2}>
         <Grid item xs={12} sm={12} md={3} lg={3}>
         <Box 
           component='div' 
           sx={{
             width: '100%',
-            p: '111px 20px',
+            p: {xs: '20px', sm: '20px', md: '12px 20px', lg: '41px 20px', xl: '111px 20px'},
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
@@ -39,15 +39,39 @@ const UserPerformance: React.FC = () => {
               alignItems: 'center',
               justifyContent: 'center', 
               gap: 1,
-              p: '20px 0'
+              p: '20px 0',
+              flexWrap: 'wrap'
             }}>
-              <Avatar alt="CSSLogo" src={CSSLogo} sx={{borderRadius: '0px', border: 'none'}} />
-              <Avatar alt="HTMLogo" src={HTMLogo} sx={{borderRadius: '0px', border: 'none'}} />
-              <Avatar alt="ReactLogo" src={ReactLogo} sx={{borderRadius: '0px', border: 'none'}} />
-              <Avatar alt="JavaScriptLogo" src={JavaScriptLogo} sx={{borderRadius: '0px', border: 'none'}} />
-              <Avatar>6+</Avatar>
+              <Avatar alt="CSSLogo" src={CSSLogo} sx={{
+                width: {xs: '40px', sm: '40px', md: '20px', lg: '40px'},  
+                height: {xs: '40px', sm: '40px', md: '20px', lg: '40px'},
+                borderRadius: '0px', 
+                border: 'none'
+                }} />
+              <Avatar alt="HTMLogo" src={HTMLogo} sx={{
+                width: {xs: '40px', sm: '40px', md: '20px', lg: '40px'},  
+                height: {xs: '40px', sm: '40px', md: '20px', lg: '40px'},
+                borderRadius: '0px', 
+                border: 'none'
+                }} />
+              <Avatar alt="ReactLogo" src={ReactLogo} sx={{
+                width: {xs: '40px', sm: '40px', md: '20px', lg: '40px'},  
+                height: {xs: '40px', sm: '40px', md: '20px', lg: '40px'},
+                borderRadius: '0px', 
+                border: 'none'
+                }} />
+              <Avatar alt="JavaScriptLogo" src={JavaScriptLogo} sx={{
+                width: {xs: '40px', sm: '40px', md: '20px', lg: '40px'},  
+                height: {xs: '40px', sm: '40px', md: '20px', lg: '40px'},
+                borderRadius: '0px', 
+                border: 'none'
+                }} />
+              <Avatar sx={{
+                width: {xs: '40px', sm: '40px', md: '48px', lg: '40px'},  
+                height: {xs: '40px', sm: '40px', md: '48px', lg: '40px'},
+              }}>6+</Avatar>
           </Box>
-          <Typography variant='h6' fontWeight='600'>Quiz Badges</Typography>
+          <Typography variant='h6' fontWeight='600' sx={{fontSize: {xs: '1.25rem', sm: '1.25rem', md: '1rem', lg: '1.25rem'}}}>Quiz Badges</Typography>
         </Box>
         </Grid>
         <Grid item xs={12} sm={12} md={9} lg={9}>

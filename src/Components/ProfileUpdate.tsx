@@ -27,7 +27,12 @@ const ProfileUpdate: React.FC = () => {
           <Avatar
             alt="Semy Sharp"
             src="/static/images/avatar/1.jpg"
-            sx={{ width: 296, height: 296, fontSize: '85px', backgroundColor: '#3751ff52', }}
+            sx={{ 
+              width: {xs: 200, sm: 200, md: 220, lg: 296}, 
+              height: {xs: 200, sm: 200, md: 220, lg: 296}, 
+              fontSize: '85px', 
+              backgroundColor: '#3751ff52', 
+            }}
           />
           <IconButton 
             color="primary" 
@@ -36,7 +41,7 @@ const ProfileUpdate: React.FC = () => {
             sx={{
               position: 'absolute',
               bottom: '49px',
-              right: '70px',
+              right: {xs: '30px', sm: '135px', md: '5px', lg: '7px', xl: '70px'},
               backgroundColor: '#F7F8FC',
               '&:hover': {
                 backgroundColor: '#F7F8FC',
@@ -49,8 +54,8 @@ const ProfileUpdate: React.FC = () => {
         </Box>
       </Grid>
       <Grid item xs={12} sm={12} md={8} lg={9}>
-        <Box component='form' sx={{p: '20px 80px'}}>
-          <Box component='div' sx={{display: 'flex', justifyContent: 'space-between', pb: '30px'}}>
+        <Box component='form' sx={{p: {xs: '20px', sm: '20px', md: '20px 80px', lg: '20px 80px',},}}>
+          <Box component='div' sx={{display: 'flex', justifyContent: 'space-between', pb: '30px', flexDirection: {xs: 'column', sm: 'column', md: 'row', lg: 'row'}, gap: {xs: '30px', sm: '30px', md: '0px', lg: '0px'}}}>
             <TextField id="standard-basic" variant="standard" label="Name" type='text' fullWidth  sx={{mr: '20px'}} defaultValue='Sagor Rana' />
             <TextField id="standard-basic" variant="standard" label="Email" type='email' fullWidth defaultValue='sagorranait@gmail.com' />
           </Box>
