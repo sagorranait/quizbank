@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Box, Typography, Button, TextField } from '@mui/material';
 import { useForm, SubmitHandler } from "react-hook-form";
+import { Link, useNavigate } from 'react-router-dom';
+import { createUserWithEmailAndPassword, signOut, updateProfile } from 'firebase/auth';
+import { auth } from '../firebase.config';
+import { toast } from 'react-hot-toast';
 import FormWraper from '../Components/FormWraper';
 import SocialMedia from '../Components/SocialMedia';
-import { Link } from 'react-router-dom';
-import { useAppDispatch } from '../app/store';
-import { storeUser } from '../features/user/user';
 
 type Inputs = {
   name: string,
@@ -14,12 +15,33 @@ type Inputs = {
 };
 
 const SignUp: React.FC = () => {
-  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+  const [loading, setLoading] = useState<boolean>(false);
   const { register, handleSubmit, formState: { errors } } = useForm<Inputs>();
 
   const onSignUp: SubmitHandler<Inputs> = data => {
-    console.log(data);
-    dispatch(storeUser({name: data.name, email: data.email}));
+    const {name, email, password} = data;
+    setLoading(true);
+    createUserWithEmailAndPassword(auth, email, password)
+      .then(({user})=>{
+         if (user) {
+            updateProfile(user, { displayName: name,})
+            .then(() => {
+               signOut(auth)
+               .then(() => {
+                setLoading(false);
+                toast.success('Successfully Sign-Up!')
+                navigate('/sign-in');
+               })
+             })
+         }
+      })
+      .catch((error) => {
+         const errorCode = error.code;
+         const errorMessage = error.message;
+         setLoading(false);
+         toast.error(`${errorCode} : ${errorMessage}`);
+      });
   };
 
   const passwordRequirement = <Box component='div' textAlign='left'>
@@ -72,7 +94,7 @@ const SignUp: React.FC = () => {
             sx={{m: '20px 0px 25px'}} 
           />
           {errors.password?.message && passwordRequirement}
-        <Button fullWidth variant="contained" type='submit' color='primary' sx={{pt: '10px', pb: '10px'}}>Sign Up</Button>
+        <Button fullWidth variant="contained" type='submit' color='primary' sx={{pt: '10px', pb: '10px'}}>{loading ? 'Creating...':'Sign Up'}</Button>
       </Box>
       <SocialMedia/>
       <Typography variant='body1'>
