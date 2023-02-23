@@ -85,7 +85,7 @@ const UserPerformance: React.FC = () => {
               borderRadius: '15px'
             }}
           >
-            <Typography variant='h5' fontWeight='700'>Assignment Analytics</Typography>
+            <Typography variant='h5' fontWeight='700'>Quiz Analytics</Typography>
             <Box component='div' sx={{p: '15px 0px', display: 'flex', gap: 1.5, alignItems: 'center'}}>
               <Box sx={{
                 width: '45px', 

@@ -7,6 +7,7 @@ export interface UserInfo{
 
 interface UserState{
    user: UserInfo;
+   loading: boolean;
 }
 
 const initialState: UserState = {
@@ -14,6 +15,7 @@ const initialState: UserState = {
       name: '',
       email: ''
    },
+   loading: false,
 }
 
 const userSlice = createSlice({
@@ -26,6 +28,9 @@ const userSlice = createSlice({
             name: action.payload.name,
             email: action.payload.email
          }
+     },
+     loadingState: (state) => {
+         state.loading = !state.loading;
      }
    }
  });

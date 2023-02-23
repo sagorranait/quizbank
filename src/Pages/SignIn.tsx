@@ -1,27 +1,77 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Box, Typography, Button, TextField } from '@mui/material';
 import FormWraper from '../Components/FormWraper';
 import SocialMedia from '../Components/SocialMedia';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { SubmitHandler, useForm } from 'react-hook-form';
+import PasswordRequirement from '../Components/PasswordRequirement';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { auth } from '../firebase.config';
+import { toast } from 'react-hot-toast';
+
+type SignInputs = {
+  email: string,
+  password: string,
+};
 
 const SignIn: React.FC = () => {
+  let navigate = useNavigate();
+  let location = useLocation();
+  const [loading, setLoading] = useState<boolean>(false);
+  const { register, handleSubmit, formState: { errors } } = useForm<SignInputs>();
+
+  let from = location.state?.from?.pathname || "/";
+
+  const onSignIn: SubmitHandler<SignInputs> = data => {
+    const {email, password} = data;
+    setLoading(true);
+    signInWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+      const user = userCredential.user;
+      if (user) {
+        setLoading(false);
+        navigate(from, { replace: true });
+        toast.success('Successfully Sign-In.');
+      }
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      setLoading(false);
+      toast.error(`${errorCode} : ${errorMessage}`);
+    });
+  };
+
   return (
     <FormWraper>
       <Typography variant='h5' sx={{fontWeight: 800, mb: 1, fontSize: {xs: '18px', sm: '18px', md: '23px', lg: '28px'}}}>Hey, Welcome Back !!!</Typography>
       <Typography variant='body1' sx={{fontSize: {xs: '15px', sm: '15px', md: '15px', lg: '16px'}}}>Use the email and password you chose when registering to your account.</Typography>
-      <Box component='form'>
-        <TextField id="standard-basic" variant="standard" label="Email" type='email' fullWidth sx={{m: '20px 0px 10px'}} />
-        <TextField id="standard-basic" variant="standard" label="Password" type='password' fullWidth sx={{m: '20px 0px 25px'}} />
-        <Box 
-          component='div' 
-          display='flex'
-          alignItems='center'
-          justifyContent='space-between' 
-          sx={{flexDirection: {xs: 'column', sm: 'column', md: 'row', lg: 'row'}, gap: '10px'}}
-        >
-          <Button variant="contained" color='primary' sx={{pt: '10px', pb: '10px', width: '72%'}}>Sign In</Button>
-          <Button variant="contained" color='primary' sx={{pt: '10px', pb: '10px'}}>Demo Sign In</Button>
-        </Box>
+      <Box component='form' onSubmit={handleSubmit(onSignIn)}>
+      <TextField 
+        {...register("email", { required: true})}
+        id={errors.email?.type === 'required' ? 'standard-error' : 'standard-basic' }
+        label={errors.email?.type === 'required' ? 'Email is required' : 'Email'} 
+        error={errors.email?.type === 'required'}
+        variant="standard" 
+        type='email' 
+        fullWidth 
+        sx={{m: '20px 0px 10px'}} 
+      />
+    <TextField 
+        {...register("password", { 
+          required: true, 
+          pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,12}$/,
+        })}
+        id={errors.password?.type === 'required' ? 'standard-error' : 'standard-basic' }
+        label={errors.password?.type === 'required' ? 'Password is required' : 'Password'} 
+        error={errors.password?.type === 'required'}
+        variant="standard" 
+        type='password' 
+        fullWidth 
+        sx={{m: '20px 0px 25px'}} 
+      />
+      {errors.password?.message && <>{PasswordRequirement}</>}
+        <Button fullWidth type='submit' variant="contained" color='primary' sx={{pt: '10px', pb: '10px'}}>{loading ? 'Signing...':'Sign In'}</Button>
       </Box>
       <SocialMedia/>
       <Typography variant='body1'>
