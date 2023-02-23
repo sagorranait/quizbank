@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
    AppBar, 
    Toolbar, 
@@ -9,7 +9,12 @@ import {
  import MenuIcon from '@mui/icons-material/Menu';
  import HelpOutlineOutlinedIcon from '@mui/icons-material/HelpOutlineOutlined';
 import Sidebar from './Sidebar';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useAppDispatch, useAppSelector } from '../app/store';
+import { signOut } from 'firebase/auth';
+import { auth } from '../firebase.config';
+import { toast } from 'react-hot-toast';
+import { storeUser } from '../features/user/user';
 
  const windowRef = () => window;
 
@@ -18,12 +23,33 @@ import { Link } from 'react-router-dom';
  }
 
 const Header: React.FC<Props> = (props) => {
-   const { dwidth } = props;
-   const [mobileOpen, setMobileOpen] = React.useState(false);
+  const { dwidth } = props;
+  let navigate = useNavigate();
+  const dispatch = useAppDispatch();
+  const [mobileOpen, setMobileOpen] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false);
+  const user = useAppSelector(state => state?.userData.user);
 
    const handleDrawerToggle = () => {
       setMobileOpen(!mobileOpen);
    };
+
+   const signOutHandle = () => {
+    setLoading(true);
+    signOut(auth)
+    .then(() => {
+      setLoading(false);
+      dispatch(storeUser({id: null, name: null, email: null}));
+      toast.success('Successfully Sign-Out!');
+      navigate('/');
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      setLoading(false);
+      toast.error(`${errorCode} : ${errorMessage}`);
+   });
+   }
 
   return (
     <>
@@ -88,9 +114,10 @@ const Header: React.FC<Props> = (props) => {
               Programming Knowledge <HelpOutlineOutlinedIcon sx={{fontSize: '13px', cursor: 'pointer'}}/>
             </Typography>
           </Typography>
-          <Link to='/sign-in'>
-            <Button variant="contained" color='primary'>SIGN IN</Button>
-          </Link>
+            { user.id ? 
+              <Button variant="contained" color='primary' onClick={signOutHandle}>{loading ? 'Outting...' : 'SIGN Out'}</Button> : 
+              <Link to='/sign-in'><Button variant="contained" color='primary'>SIGN IN</Button></Link>
+            }
         </Toolbar>
       </AppBar>
       {/* Sidebar Start */}

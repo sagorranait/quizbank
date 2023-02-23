@@ -16,8 +16,10 @@ import {
  import ConnectWithoutContactOutlinedIcon from '@mui/icons-material/ConnectWithoutContactOutlined';
  import LiveHelpOutlinedIcon from '@mui/icons-material/LiveHelpOutlined';
 import Motivation from './Motivation';
+import { useAppSelector } from '../app/store';
 
 const Menu: React.FC = () => {
+   const user = useAppSelector(state => state?.userData.user);
   return (
    <>
       <Typography 
@@ -30,22 +32,24 @@ const Menu: React.FC = () => {
       </Typography>
       <Toolbar />
       <List>
-         <NavLink
-            to={'/profile'}
-            className={({ isActive }) => {
-               return isActive ? "active" : "";
-            }}
-            end
-         >
-            <ListItem disablePadding>
-               <ListItemButton sx={{fontWeight: 600,}}>
-                  <ListItemIcon>
-                     <PersonOutlinedIcon/>
-                  </ListItemIcon>
-                  <ListItemText primary="My Profile"/>
-                  </ListItemButton>
-            </ListItem>
-         </NavLink>
+         {user.id && 
+            <NavLink
+               to={'/profile'}
+               className={({ isActive }) => {
+                  return isActive ? "active" : "";
+               }}
+               end
+            >
+               <ListItem disablePadding>
+                  <ListItemButton sx={{fontWeight: 600,}}>
+                     <ListItemIcon>
+                        <PersonOutlinedIcon/>
+                     </ListItemIcon>
+                     <ListItemText primary="My Profile"/>
+                     </ListItemButton>
+               </ListItem>
+            </NavLink>
+         }
          <NavLink
             to={'/'}
             className={({ isActive }) => {
