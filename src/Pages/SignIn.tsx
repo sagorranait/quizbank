@@ -6,8 +6,9 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import PasswordRequirement from '../Components/PasswordRequirement';
 import { signInWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '../firebase.config';
+import { auth, db } from '../firebase.config';
 import { toast } from 'react-hot-toast';
+import { doc, getDoc, setDoc } from "firebase/firestore";
 
 type SignInputs = {
   email: string,
@@ -26,12 +27,24 @@ const SignIn: React.FC = () => {
     const {email, password} = data;
     setLoading(true);
     signInWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
+    .then(async (userCredential) => {
       const user = userCredential.user;
-      if (user) {
+      if (user) {        
         setLoading(false);
         navigate(from, { replace: true });
         toast.success('Successfully Sign-In.');
+
+        const docRef = doc(db, "user", user.uid);
+        const docSnap = await getDoc(docRef);
+
+        if (!docSnap.exists()) {
+          await setDoc(doc(db, "user", user.uid), {
+            name: user.displayName,
+            email: user.email,
+            quiz_took: [],
+          });
+        }
+        
       }
     })
     .catch((error) => {

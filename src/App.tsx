@@ -8,9 +8,10 @@ import { Outlet } from 'react-router-dom';
 import Header from './Components/Header';
 import { Toaster } from 'react-hot-toast';
 import { onAuthStateChanged } from 'firebase/auth';
-import { auth } from './firebase.config';
+import { auth, db } from './firebase.config';
 import { useAppDispatch } from './app/store';
-import { storeUser } from './features/user/user';
+import { loadingState, storeUser } from './features/user/user';
+import { doc, getDoc } from "firebase/firestore";
 
 const drawerWidth = 240;
 
@@ -18,10 +19,18 @@ const App: React.FC = () => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
+    onAuthStateChanged(auth, async (user) => {
+      dispatch(loadingState());
       if (user) {
-        const { uid, displayName, email } = user;
-        dispatch(storeUser({id: uid, name: displayName, email}));
+        const { uid } = user;
+        const docRef = doc(db, "user", uid);
+        const docSnap = await getDoc(docRef);
+
+        if (docSnap.exists()) {
+          const {name, email} = docSnap.data();
+          dispatch(storeUser({id: uid, name, email}));
+          dispatch(loadingState());
+        }
       }
     });
   }, [dispatch])

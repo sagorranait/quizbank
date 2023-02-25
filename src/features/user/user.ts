@@ -39,6 +39,7 @@ const userSlice = createSlice({
  });
 
  export const {
-   storeUser 
+   storeUser,
+   loadingState
  } = userSlice.actions;
  export default userSlice.reducer;

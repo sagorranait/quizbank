@@ -10,6 +10,7 @@ const RequireAuth: React.FC<RequireAuthProps> = ({ children }) => {
    const {user, loading} = useAppSelector(state => state.userData);
    
    let location = useLocation();
+   
    if (loading) { return <Loading/> }
    
    if (!user) { return <Navigate to="/login" state={{ from: location }} replace /> }
