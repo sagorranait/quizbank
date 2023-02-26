@@ -41,20 +41,7 @@ const Quizzes: React.FC = () => {
                 <QuizItem id={item.id} bache={item.bache} title={item.title} type={item.type} />
               </Grid>)
               ) : (
-                <>
-                  <QuizSkelton/>
-                  <QuizSkelton/>
-                  <QuizSkelton/>
-                  <QuizSkelton/>
-                  <QuizSkelton/>
-                  <QuizSkelton/>
-                  <QuizSkelton/>
-                  <QuizSkelton/>
-                  <QuizSkelton/>
-                  <QuizSkelton/>
-                  <QuizSkelton/>
-                  <QuizSkelton/>
-                </>
+                <QuizSkelton/>
               ) }
             </Grid>
           </Box>
