@@ -62,7 +62,7 @@ const SignIn: React.FC = () => {
       <Box component='form' onSubmit={handleSubmit(onSignIn)}>
       <TextField 
         {...register("email", { required: true})}
-        id={errors.email?.type === 'required' ? 'standard-error' : 'standard-basic' }
+        id={errors.email?.type === 'required' ? 'standard-error' : 'standard-basic-email' }
         label={errors.email?.type === 'required' ? 'Email is required' : 'Email'} 
         error={errors.email?.type === 'required'}
         variant="standard" 
@@ -75,7 +75,7 @@ const SignIn: React.FC = () => {
           required: true, 
           pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,12}$/,
         })}
-        id={errors.password?.type === 'required' ? 'standard-error' : 'standard-basic' }
+        id={errors.password?.type === 'required' ? 'standard-error' : 'standard-basic-password' }
         label={errors.password?.type === 'required' ? 'Password is required' : 'Password'} 
         error={errors.password?.type === 'required'}
         variant="standard" 

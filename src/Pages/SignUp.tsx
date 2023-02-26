@@ -52,7 +52,7 @@ const SignUp: React.FC = () => {
       <Box component='form' onSubmit={handleSubmit(onSignUp)}>
         <TextField 
             {...register("name", { required: true, maxLength: 10 })}
-            id={errors.name?.type === 'required' ? 'standard-error' : 'standard-basic' }
+            id={errors.name?.type === 'required' ? 'standard-error' : 'standard-basic-name' }
             label={errors.name?.type === 'required' ? 'Name is required' : 'Name'} 
             error={errors.name?.type === 'required'}
             variant="standard" 
@@ -62,7 +62,7 @@ const SignUp: React.FC = () => {
           />
         <TextField 
             {...register("email", { required: true})}
-            id={errors.email?.type === 'required' ? 'standard-error' : 'standard-basic' }
+            id={errors.email?.type === 'required' ? 'standard-error' : 'standard-basic-email' }
             label={errors.email?.type === 'required' ? 'Email is required' : 'Email'} 
             error={errors.email?.type === 'required'}
             variant="standard" 
@@ -75,7 +75,7 @@ const SignUp: React.FC = () => {
               required: true, 
               pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,12}$/,
               })}
-            id={errors.password?.type === 'required' ? 'standard-error' : 'standard-basic' }
+            id={errors.password?.type === 'required' ? 'standard-error' : 'standard-basic-password' }
             label={errors.password?.type === 'required' ? 'Password is required' : 'Password'} 
             error={errors.password?.type === 'required'}
             variant="standard" 
