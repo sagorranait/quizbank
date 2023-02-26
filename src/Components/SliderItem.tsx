@@ -2,16 +2,21 @@ import React from 'react';
 import { 
   Avatar, 
   Box, 
-  Button, 
   Card, 
-  CardActions, 
   CardContent, 
   Typography 
 } from '@mui/material';
 import StarIcon from '@mui/icons-material/Star';
-import JavaScriptLogo from '../Assets/quiz/javascript.png';
 
-const SliderItem:React.FC = () => {
+interface SliderItemProps {
+  bache: string;
+  title: string;
+  topics: [string];
+  type: string;
+}
+
+const SliderItem:React.FC<SliderItemProps> = (props) => {
+  const { bache, title, topics, type } = props;
   return (
    <Box>
        <Card sx={{ 
@@ -27,7 +32,7 @@ const SliderItem:React.FC = () => {
               justifyContent: 'space-between'}}>
             <Avatar
               alt="JavaScriptLogo"
-              src={JavaScriptLogo}
+              src={bache}
               sx={{ width: 66, height: 66, borderRadius: '0px' }}
             />
             <Box sx={{
@@ -43,29 +48,15 @@ const SliderItem:React.FC = () => {
             </Box>
           </Box>
           <Typography variant='h6' sx={{ mt: 1.5 }}>
-            JavaScript
+            {title}
           </Typography>
           <Typography sx={{ mb: 1 }} color="text.secondary">
-            Intermediate
+            {type}
           </Typography>
           <Typography variant="body2" color="secondary.light">
-            Topics: Variables, Data Types, Functions, Objects, Class, etc.
+            Topics: {topics.map(topic => topic+', ')} etc.
           </Typography>
         </CardContent>
-        <CardActions>
-          <Button size="small" sx={{
-            border: '1px solid rgba(55, 81, 255, 0.5)', 
-            borderRadius: '25px', 
-            textTransform: 'capitalize',
-            paddingLeft: '15px',
-            paddingRight: '15px',
-          }}>Practice</Button>
-          <Button size="small" sx={{
-            border: '1px solid rgba(55, 81, 255, 0.5)', 
-            borderRadius: '25px', 
-            textTransform: 'capitalize'
-          }}>Start</Button>
-        </CardActions>
       </Card>
    </Box>
   )

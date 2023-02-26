@@ -1,13 +1,28 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Slider from "react-slick";
-import { Box, IconButton, MobileStepper, Typography } from '@mui/material';
+import { Box, IconButton, MobileStepper, Typography, Skeleton } from '@mui/material';
 import NavigateBeforeOutlinedIcon from '@mui/icons-material/NavigateBeforeOutlined';
 import NavigateNextOutlinedIcon from '@mui/icons-material/NavigateNextOutlined';
 import SliderItem from './SliderItem';
+import { collection, DocumentData, getDocs, limit, orderBy, query } from "firebase/firestore";
+import { db } from '../firebase.config';
 
 const QuizSlider: React.FC = () => {
   const slider = React.useRef<any>(null);
-  const [activeStep, setActiveStep] = React.useState<number>(1);
+  const [activeStep, setActiveStep] = useState<number>(1);
+  const [sliderItem, setSliderItem] = useState<DocumentData[]>([]);
+  
+  useEffect(() => {
+    const getData = async () => {
+      const q = query(collection(db, "quiz"), orderBy("title", "desc"), limit(10));
+      const querySnapshot = await getDocs(q);
+
+      querySnapshot.forEach((doc) => {
+        setSliderItem(prevState => [...prevState, doc.data()]);
+      });
+    }
+    getData();
+  }, [])  
 
    const settings = {
       arrows: false,
@@ -62,25 +77,35 @@ const QuizSlider: React.FC = () => {
 
   return (
     <Box component='div' className='quizSlider'>
-        <Slider ref={slider} {...settings}>
-          <SliderItem/>
-          <SliderItem/>
-          <SliderItem/>
-          <SliderItem/>
-          <SliderItem/>
-          <SliderItem/>
-          <SliderItem/>
-          <SliderItem/>
-          <SliderItem/>
-          <SliderItem/>
-        </Slider>
+      {sliderItem.length > 0 ? (
+          <Slider ref={slider} {...settings}>
+            {sliderItem.map((item, index) => (
+            <SliderItem 
+              key={index} 
+              bache={item.bache} 
+              title={item.title}  
+              topics={item.topics}
+              type={item.type}
+            />
+            ))}
+          </Slider>
+      ) : (
+        <Box component='div' sx={{display: 'flex', gap: '15px', mb: '20px'}}>
+          <Skeleton variant="rectangular" width="275px" height='242px' sx={{borderRadius: '15px'}} />
+          <Skeleton variant="rectangular" width="275px" height='242px' sx={{borderRadius: '15px'}} />
+          <Skeleton variant="rectangular" width="275px" height='242px' sx={{borderRadius: '15px'}} />
+          <Skeleton variant="rectangular" width="275px" height='242px' sx={{borderRadius: '15px'}} />
+          <Skeleton variant="rectangular" width="275px" height='242px' sx={{borderRadius: '15px'}} />        
+          <Skeleton variant="rectangular" width="275px" height='242px' sx={{borderRadius: '15px'}} />        
+        </Box>
+      )}
         <Box 
           component='div' 
           sx={{
             display: 'flex', 
             alignItems: 'center', 
             gap: {xs: '12px', sm: '12px', md: '20px', lg:'20px'}, 
-            p: '0px 20px',
+            p: '10px 20px',
             justifyContent: {xs: 'center', sm: 'center', md: 'flex-start', lg: 'flex-start'}
           }}
         >
