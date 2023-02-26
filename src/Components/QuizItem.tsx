@@ -1,9 +1,16 @@
 import React from 'react';
 import { Box, Button, Typography, Avatar } from '@mui/material';
-import JavaScriptLogo from '../Assets/quiz/javascript.png';
 import { Link } from 'react-router-dom';
 
-const QuizItem: React.FC = () => {
+interface QuizItemProps {
+  id: string;
+  bache: string;
+  title: string;
+  type: string;
+}
+
+const QuizItem: React.FC<QuizItemProps> = (props) => {
+  const { id, bache, title, type } = props;
   return (
    <Box sx={{ 
     display: 'flex', 
@@ -18,20 +25,20 @@ const QuizItem: React.FC = () => {
     margin: {xs: '0 auto', sm: '0 auto', md: '0', lg: '0'}
   }}>
     <Avatar
-      alt="JavaScriptLogo"
-      src={JavaScriptLogo}
+      alt={title}
+      src={bache}
       sx={{ width: 60, height: 60, borderRadius: '0px' }}
     />
-    <Box component='div'>
+    <Box component='div' width='105px'>
       <Typography variant='h6'>
-        JavaScript
+        {title}
       </Typography>
       <Typography sx={{ mb: 1 }} color="text.secondary">
-        Intermediate
+        {type}
       </Typography>
     </Box>
     <Box component='div'>
-      <Link to={'/quiz/html'}>
+      <Link to={`/quiz/${id}`}>
         <Button 
           size="small" 
           sx={{
@@ -44,7 +51,7 @@ const QuizItem: React.FC = () => {
           }}
         >Practice</Button>
       </Link>
-      <Link to={'/quiz/html'}>
+      <Link to={`/quiz/${id}`}>
         <Button 
           size="small" 
           sx={{
