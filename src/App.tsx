@@ -27,8 +27,8 @@ const App: React.FC = () => {
         const docSnap = await getDoc(docRef);
 
         if (docSnap.exists()) {
-          const {name, email} = docSnap.data();
-          dispatch(storeUser({id: uid, name, email}));
+          const { name, email, address, city, zip_code, phone, photo_url } = docSnap.data();
+          dispatch(storeUser({id: uid, name, email, phone, address, city, zip_code, photo_url}));
           dispatch(loadingState());
         }
       }

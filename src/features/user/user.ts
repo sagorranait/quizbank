@@ -4,6 +4,12 @@ export interface UserInfo{
    id: string | null;
    name: string | null;
    email: string | null;
+   phone?: string | null;
+   photo_url?: string | null;
+   address?: string | null;
+   city?: string | null;
+   zip_code?: string | null;
+
 }
 
 interface UserState{
@@ -15,7 +21,12 @@ const initialState: UserState = {
    user: {
       id: '',
       name: '',
-      email: ''
+      email: '',
+      phone: '',
+      photo_url: '',
+      address: '',
+      city: '',
+      zip_code: '',
    },
    loading: false,
 }
@@ -29,7 +40,12 @@ const userSlice = createSlice({
             ...state.user,
             id: action.payload.id,
             name: action.payload.name,
-            email: action.payload.email
+            email: action.payload.email,
+            phone: action.payload.phone,
+            photo_url: action.payload.photo_url,
+            address: action.payload.address,
+            city: action.payload.city,
+            zip_code: action.payload.zip_code,
          }
      },
      loadingState: (state) => {
