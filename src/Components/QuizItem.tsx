@@ -1,16 +1,20 @@
 import React from 'react';
 import { Box, Button, Typography, Avatar } from '@mui/material';
 import { Link } from 'react-router-dom';
+import { useAppSelector } from '../app/store';
 
 interface QuizItemProps {
   id: string;
   bache: string;
   title: string;
   type: string;
+  user_attend: [string];
 }
 
 const QuizItem: React.FC<QuizItemProps> = (props) => {
-  const { id, bache, title, type } = props;
+  const  user = useAppSelector(state => state.userData.user);
+  const { id, bache, title, type, user_attend } = props;  
+
   return (
    <Box sx={{ 
     display: 'flex', 
@@ -59,7 +63,7 @@ const QuizItem: React.FC<QuizItemProps> = (props) => {
             borderRadius: '25px', 
             textTransform: 'capitalize',
           }}
-        >Start</Button>
+        >{user_attend.includes(`${user.id}`) ? 'Re-Take' : 'Start'}</Button>
       </Link>
     </Box>
    </Box>

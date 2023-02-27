@@ -38,7 +38,13 @@ const Quizzes: React.FC = () => {
             <Grid container spacing={3} sx={{flexDirection: {xs: 'column', sm:'row', md: 'row', lg:'row'}}}>
               {quizItem.length > 0 ? (
                 quizItem.map((item, index)=> <Grid key={index} item xs={6} sm={6} md={4} lg={3}>
-                <QuizItem id={item.id} bache={item.bache} title={item.title} type={item.type} />
+                <QuizItem 
+                  id={item.id} 
+                  bache={item.bache} 
+                  title={item.title} 
+                  type={item.type} 
+                  user_attend = {item.user_attend}
+                />
               </Grid>)
               ) : (
                 <QuizSkelton/>

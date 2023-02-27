@@ -9,39 +9,34 @@ import {
    FormControlLabel,
    Radio
 } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
+import { doc, DocumentData, getDoc } from 'firebase/firestore';
+import { db } from '../firebase.config';
 
 const steps = ['1', '2', '3','4', '5', '6','7', '8', '9','10'];
 
-const quizzes = [
-   { title: 'Using an attribute selector, how would you select an <a> element with a "title" attribute?', options: ['a[title]{...}', 'a > title {...}', 'a.title {...}', 'a=title {...}'] },
-   { title: ' Using an attribute selector, 2?', options: ['a[title]{...}1', 'a > title {...}1', 'a.title {...}1', 'a=title {...}1'] },
-   { title: ' Using an attribute selector, 3?', options: ['a[title]{...}', 'a > title {...}', 'a.title {...}', 'a=title {...}'] },
-   { title: ' Using an attribute selector, 4?', options: ['a[title]{...}', 'a > title {...}', 'a.title {...}', 'a=title {...}'] },
-   { title: ' Using an attribute selector, 5?', options: ['a[title]{...}', 'a > title {...}', 'a.title {...}', 'a=title {...}'] },
-   { title: ' Using an attribute selector, 6?', options: ['a[title]{...}', 'a > title {...}', 'a.title {...}', 'a=title {...}'] },
-   { title: ' Using an attribute selector, 7?', options: ['a[title]{...}', 'a > title {...}', 'a.title {...}', 'a=title {...}'] },
-   { title: ' Using an attribute selector, 8?', options: ['a[title]{...}', 'a > title {...}', 'a.title {...}', 'a=title {...}'] },
-   { title: ' Using an attribute selector, 9?', options: ['a[title]{...}', 'a > title {...}', 'a.title {...}', 'a=title {...}'] },
-   { title: ' Using an attribute selector, 10?', options: ['a[title]{...}', 'a > title {...}', 'a.title {...}', 'a=title {...}'] }
-];
-
 const Exam: React.FC = () => {
+   let { eid } = useParams();
    const navigate = useNavigate();
-   const [timeLeft, setTimeLeft] = useState(600);
+   const [value, setValue] = React.useState('');
    const [activeStep, setActiveStep] = useState(0);
    const [skipped, setSkipped] = useState(new Set<number>());
-
+   const [quizzes, setQuizzes] = useState<DocumentData[]>([]);
 
    useEffect(() => {
-      if (timeLeft <= 0) return;
-      const timer = setTimeout(() => {
-        setTimeLeft(timeLeft - 1);
-      }, 1000);
-      return () => clearTimeout(timer);
-    }, [timeLeft]);
-
-   const [value, setValue] = React.useState('');
+      const getQuiz = async () => {
+         const docRef = doc(db, "quiz", eid || '');
+         const docSnap = await getDoc(docRef);
+         if (docSnap.exists()) {
+            const docData = docSnap.data();
+            docData.questions.forEach((item: object) => {
+               setQuizzes(prevState => [...prevState, item]);
+            });
+         }
+      }
+      getQuiz();
+    }, [eid]);
+    
 
    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
       setValue((event.target as HTMLInputElement).value);
@@ -83,17 +78,15 @@ const Exam: React.FC = () => {
          navigate('/quiz/html/completed');         
       }
   };
+  
 
   return (
    <Box component='div' sx={{display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%'}}>
       <Box component='div'>
-         <Box component='div' sx={{display: 'flex', alignItems: 'center', justifyContent: 'space-between'}}>
-            <Typography 
-               variant='h6' 
-               sx={{p: '8px 0px', textAlign: 'center', mb: '15px', backgroundColor: '#F7F8FC', width: '94%',}}
-            >Reactjs Quiz</Typography>
-            <Typography>{Math.floor(timeLeft / 60)} : {timeLeft % 60}s</Typography>
-         </Box>
+         <Typography 
+            variant='h6' 
+            sx={{p: '8px 0px', textAlign: 'center', mb: '15px', backgroundColor: '#F7F8FC', width: '94%',}}
+         >Reactjs Quiz</Typography>
          <Box 
             component='div'
             sx={{
@@ -107,7 +100,7 @@ const Exam: React.FC = () => {
             <Box sx={{ width: '100%' }}>
                <React.Fragment>
                   <Box component='div'>
-                     <Typography variant='inherit' sx={{fontSize: '18px', pb: '15px'}}>{quizzes[activeStep].title}</Typography>
+                     <Typography variant='inherit' sx={{fontSize: '18px', pb: '15px'}}>{quizzes[activeStep]?.title}</Typography>
                      <FormControl>
                         <RadioGroup
                            aria-labelledby="demo-controlled-radio-buttons-group"
@@ -115,7 +108,12 @@ const Exam: React.FC = () => {
                            value={value}
                            onChange={handleChange}
                         >
-                           {quizzes[activeStep].options?.map((option, index) => <FormControlLabel key={index} value={option} control={<Radio />} label={option} />)}
+                           {quizzes[activeStep]?.options?.map((option : string, index: number) => <FormControlLabel 
+                              key={index} 
+                              value={option} 
+                              control={<Radio />} 
+                              label={option}
+                           />)}
                         </RadioGroup>
                      </FormControl>
                   </Box>

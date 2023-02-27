@@ -139,7 +139,7 @@ const ExamDetails: React.FC = () => {
                   >
                      <Typography variant='body2'>Language: <b>English</b></Typography>
                      <Box component='div'>
-                        <Link to={'/html/practice'}>
+                        <Link to={`/quiz/${detail.id}/practice`}>
                         <Button 
                            size="small" 
                            sx={{

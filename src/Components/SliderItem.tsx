@@ -17,6 +17,7 @@ interface SliderItemProps {
 
 const SliderItem:React.FC<SliderItemProps> = (props) => {
   const { bache, title, topics, type } = props;
+
   return (
    <Box>
        <Card sx={{ 

@@ -27,7 +27,7 @@ const routes = createBrowserRouter([
          { path: 'contact-us', element: <ContactUs/> },
          { path: 'leader-board', element: <LeaderBoard/> },
          { path: '/quiz/:quizid', element: <ExamDetails/>},
-         { path: '/quiz/:quiz/start', element: <Exam/>},
+         { path: '/quiz/:eid/start', element: <Exam/>},
          { path: '/quiz/:quiz/completed', element: <ExamCompleted/>},
       ],
    },
