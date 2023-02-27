@@ -1,4 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
+
 import App from "./App";
 import Faq from "./Pages/Faq";
 import Profile from "./Pages/Profile";
@@ -25,8 +26,8 @@ const routes = createBrowserRouter([
          { path: 'about-us', element: <AboutUs/> },
          { path: 'contact-us', element: <ContactUs/> },
          { path: 'leader-board', element: <LeaderBoard/> },
+         { path: '/quiz/:quizid', element: <ExamDetails/>},
          { path: '/quiz/:quiz/start', element: <Exam/>},
-         { path: '/quiz/:quiz', element: <ExamDetails/>},
          { path: '/quiz/:quiz/completed', element: <ExamCompleted/>},
       ],
    },
