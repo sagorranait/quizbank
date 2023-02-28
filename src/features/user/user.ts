@@ -9,7 +9,6 @@ export interface UserInfo{
    address?: string | null;
    city?: string | null;
    zip_code?: string | null;
-
 }
 
 interface UserState{
