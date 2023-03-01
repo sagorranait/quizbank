@@ -89,7 +89,7 @@ const Exam: React.FC = () => {
                mark: string | null,
              }) => exam?.quizId === eid)
 
-            if (reExam.quizId === eid) {
+            if (reExam?.quizId === eid) {
                const userRef = doc(db, "user", id || '');
                const userDoc = await getDoc(userRef);
                const quizzes = userDoc.data()?.quiz_took;               
