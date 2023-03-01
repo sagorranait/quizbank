@@ -82,26 +82,61 @@ const Exam: React.FC = () => {
 
          if (markSnap.exists()) {
             const { quiz_took } = markSnap.data();
-            let markDetails = [...quiz_took, {
-               bache: examDetails.bache,
-               title: examDetails.title,
-               quizId: examDetails.quizId,
-               mark: `${examDetails.mark}`,
-             }];
+            const reExam = quiz_took.find((exam: {
+               bache: string | null,
+               title: string | null,
+               quizId: string | null,
+               mark: string | null,
+             }) => exam?.quizId === eid)
 
-            await updateDoc(marksDetails, {
-               quiz_took: markDetails,
-             })
-             .then(()=> {
-               setLoading(false);
-               navigate(`/quiz/${eid}/completed`);
-             })
-             .catch((error)=>{
-               const errorCode = error.code;
-               const errorMessage = error.message;
-               setLoading(false);
-               toast.error(`${errorCode} : ${errorMessage}`);
-             });
+            if (reExam.quizId === eid) {
+               const userRef = doc(db, "user", id || '');
+               const userDoc = await getDoc(userRef);
+               const quizzes = userDoc.data()?.quiz_took;               
+               const quizIndex = quizzes.findIndex(
+                  (quiz: {
+                     bache: string | null,
+                     title: string | null,
+                     quizId: string | null,
+                     mark: string | null,
+                   }) => quiz.quizId === eid
+                );
+
+                quizzes[quizIndex].mark = examDetails.mark;
+               await updateDoc(userRef, { quiz_took: quizzes })
+               .then(()=> {
+                  setLoading(false);
+                  navigate(`/quiz/${eid}/completed`);
+                })
+                .catch((error)=>{
+                  const errorCode = error.code;
+                  const errorMessage = error.message;
+                  setLoading(false);
+                  toast.error(`${errorCode} : ${errorMessage}`);
+                });
+            } else{
+               let markDetails = [...quiz_took, {
+                   bache: examDetails.bache,
+                   title: examDetails.title,
+                   quizId: examDetails.quizId,
+                   mark: `${examDetails.mark}`,
+                 }];
+    
+                await updateDoc(marksDetails, {
+                   quiz_took: markDetails,
+                 })
+                 .then(()=> {
+                   setLoading(false);
+                   navigate(`/quiz/${eid}/completed`);
+                 })
+                 .catch((error)=>{
+                   const errorCode = error.code;
+                   const errorMessage = error.message;
+                   setLoading(false);
+                   toast.error(`${errorCode} : ${errorMessage}`);
+                 });
+            }
+            
          }
       }
 
