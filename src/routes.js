@@ -12,6 +12,7 @@ import SignUp from "./Pages/SignUp";
 import ExamDetails from "./Pages/ExamDetails";
 import Exam from "./Pages/Exam";
 import ExamCompleted from "./Pages/ExamCompleted";
+import ExamPractice from "./Pages/ExamPractice";
 
 const routes = createBrowserRouter([
    {
@@ -29,6 +30,9 @@ const routes = createBrowserRouter([
          { path: '/quiz/:quizid', element: <ExamDetails/>},
          { path: '/quiz/:eid/start', element: <Exam/>},
          { path: '/quiz/:quiz/completed', element: <ExamCompleted/>},
+         { path: '/quiz/practice/:quizid', element: <ExamDetails/>},
+         { path: '/quiz/:eid/practice', element: <ExamPractice/>},
+         { path: '/quiz/:quiz/practiced', element: <ExamCompleted/>},
       ],
    },
 ]);

@@ -42,7 +42,7 @@ const QuizItem: React.FC<QuizItemProps> = (props) => {
       </Typography>
     </Box>
     <Box component='div'>
-      <Link to={`/quiz/${id}`}>
+      <Link to={`/quiz/practice/${id}`}>
         <Button 
           size="small" 
           sx={{

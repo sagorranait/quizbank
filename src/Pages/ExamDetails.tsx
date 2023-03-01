@@ -29,6 +29,7 @@ const ExamDetails: React.FC = () => {
    const { id } = useAppSelector(state => state.userData.user);
    const [details, setDetails] = useState<DocumentData[]>([]);
    const [loading, setLoading] = useState<boolean>(false);
+   const [practiceLoading, setPracticeLoading] = useState<boolean>(false);
 
    useEffect(() => {
       const getQuiz = async () => {
@@ -46,22 +47,32 @@ const ExamDetails: React.FC = () => {
       getQuiz();
     }, [docRef]);
     
-    const examStartHandler = async() => {
+    const examStartHandler = async(type: string) => {
       const data = details[0].user_attend;
       data.push(`${id}`);
-            
-      setLoading(true);
+      if (type === 'start') {
+         setLoading(true);
+      }else{
+         setPracticeLoading(true);         
+      }
+
       await updateDoc(docRef, {
          user_attend: data,
        })
        .then(()=>{
-         setLoading(false);
-         navigate(`/quiz/${details[0].id}/start`);
+         if (type === 'start') {
+            setLoading(false);
+            navigate(`/quiz/${details[0].id}/start`);            
+         }else{
+            setPracticeLoading(false);
+            navigate(`/quiz/${details[0].id}/practice`); 
+         }
        })
        .catch((error)=>{
          const errorCode = error.code;
          const errorMessage = error.message;
          setLoading(false);
+         setPracticeLoading(false);
          toast.error(`${errorCode} : ${errorMessage}`);
        });
     }
@@ -139,8 +150,8 @@ const ExamDetails: React.FC = () => {
                   >
                      <Typography variant='body2'>Language: <b>English</b></Typography>
                      <Box component='div'>
-                        <Link to={`/quiz/${detail.id}/practice`}>
                         <Button 
+                           onClick={() => examStartHandler('practice')}
                            size="small" 
                            sx={{
                               border: '1px solid rgba(55, 81, 255, 0.5)', 
@@ -150,11 +161,9 @@ const ExamDetails: React.FC = () => {
                               paddingRight: '12px',
                               mr: '10px'
                            }}
-                        >Practice</Button>
-                        </Link>
-                        {/* <Link to={'/quiz/html/start'}> */}
+                        >{practiceLoading ? 'Practicing...' : 'Practice'}</Button>
                         <Button
-                           onClick={examStartHandler}
+                           onClick={() => examStartHandler('start')}
                            variant="contained"
                            size="small" 
                            sx={{
