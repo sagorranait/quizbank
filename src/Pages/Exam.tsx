@@ -144,16 +144,16 @@ const Exam: React.FC = () => {
       setSkipped(newSkipped);          
     };    
 
-  const handleBack = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep - 1);
-  };
-
   const handleSkip = () => {
       setActiveStep((prevActiveStep) => prevActiveStep + 1);
       setSkipped((prevSkipped) => {
          const newSkipped = new Set(prevSkipped.values());
          newSkipped.add(activeStep);
          return newSkipped;
+      });
+
+      setMark((prevMark)=>{
+         return prevMark + 0;
       });
 
       if (activeStep === 9) {
@@ -221,20 +221,16 @@ const Exam: React.FC = () => {
                         steps={10}
                         position="static"
                         activeStep={activeStep}
-                        sx={{ maxWidth: 630, flexGrow: 1 }}
+                        sx={{ maxWidth: 670, flexGrow: 1 }}
                         nextButton={undefined}
                         backButton={undefined}
                      />
                      <Box component='div'/>
-                        <Button
-                           color="inherit"
-                           disabled={activeStep === 0}
-                           onClick={handleBack}
+                        <Button 
+                           color="inherit" 
+                           onClick={handleSkip} 
                            sx={{ mr: 1 }}
                         >
-                           Back
-                        </Button>
-                        <Button color="inherit" onClick={handleSkip} sx={{ mr: 1 }}>
                            Skip
                         </Button>
                         <Button onClick={handleNext}>
