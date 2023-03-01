@@ -17,6 +17,13 @@ import { db } from '../firebase.config';
 import { useAppSelector } from '../app/store';
 import { toast } from 'react-hot-toast';
 
+interface examState {
+   bache: string | null,
+   title: string | null,
+   quizId: string | null,
+   mark: string | null,
+ }
+
 const Exam: React.FC = () => {
    let { eid } = useParams();
    const { id } = useAppSelector(state => state.userData.user);
@@ -82,24 +89,14 @@ const Exam: React.FC = () => {
 
          if (markSnap.exists()) {
             const { quiz_took } = markSnap.data();
-            const reExam = quiz_took.find((exam: {
-               bache: string | null,
-               title: string | null,
-               quizId: string | null,
-               mark: string | null,
-             }) => exam?.quizId === eid)
+            const reExam = quiz_took.find((exam: examState) => exam?.quizId === eid)
 
             if (reExam?.quizId === eid) {
                const userRef = doc(db, "user", id || '');
                const userDoc = await getDoc(userRef);
                const quizzes = userDoc.data()?.quiz_took;               
                const quizIndex = quizzes.findIndex(
-                  (quiz: {
-                     bache: string | null,
-                     title: string | null,
-                     quizId: string | null,
-                     mark: string | null,
-                   }) => quiz.quizId === eid
+                  (quiz: examState) => quiz.quizId === eid
                 );
 
                 quizzes[quizIndex].mark = examDetails.mark;
@@ -157,7 +154,7 @@ const Exam: React.FC = () => {
       });
 
       if (activeStep === 9) {
-         navigate('/quiz/html/completed');         
+         navigate(`/quiz/${eid}/completed`);         
       }
   };
 
