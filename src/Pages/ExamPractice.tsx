@@ -12,44 +12,32 @@ import {
    Skeleton
 } from '@mui/material';
 import { useNavigate, useParams } from 'react-router-dom';
-import { doc, DocumentData, getDoc, updateDoc } from 'firebase/firestore';
+import { doc, DocumentData, getDoc } from 'firebase/firestore';
 import { db } from '../firebase.config';
-import { useAppSelector } from '../app/store';
-import { toast } from 'react-hot-toast';
-
-interface examState {
-   bache: string | null,
-   title: string | null,
-   quizId: string | null,
-   mark: string | null,
- }
 
 const ExamPractice: React.FC = () => {
    let { eid } = useParams();
-   const { id } = useAppSelector(state => state.userData.user);
    const navigate = useNavigate();
    const [value, setValue] = React.useState('');
    const [activeStep, setActiveStep] = useState(0);
-   const [examDetails, setExamDetails] = useState({title: '', mark: 0, bache: '', quizId: ''});
-   const [mark, setMark] = useState<number>(0);
    const [skipped, setSkipped] = useState(new Set<number>());
-   const [quizzes, setQuizzes] = useState<DocumentData[]>([]);   
-   const [loading, setLoading] = useState<boolean>(false);
+   const [quizzes, setQuizzes] = useState<DocumentData[]>([]); 
+   const [examDetails, setExamDetails] = useState({title: ''});
 
    useEffect(() => {
       const getQuiz = async () => {
          const docRef = doc(db, "quiz", eid || '');
          const docSnap = await getDoc(docRef);
          if (docSnap.exists()) {
-            const docData = docSnap.data();            
-            setExamDetails({title: docData.title, mark, bache: docData.bache, quizId: eid || ''});
+            const docData = docSnap.data(); 
+            setExamDetails({title: docData.title});
             docData.questions.forEach((item: object) => {
                setQuizzes(prevState => [...prevState, item]);
             });
          }
       }
       getQuiz();
-    }, [eid, mark]);
+    }, [eid]);
 
    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
       setValue((event.target as HTMLInputElement).value);
@@ -66,75 +54,9 @@ const ExamPractice: React.FC = () => {
         newSkipped = new Set(newSkipped.values());
         newSkipped.delete(activeStep);
       }
-    
-      // Check if the selected option is the correct answer
-      const selectedOption = quizzes[activeStep]?.options?.find(
-        (option: string) => option === value
-      );
-
-      const isCorrect = selectedOption === quizzes[activeStep]?.answer;
-    
-      // Assign marks to the question based on whether the answer is correct or not
-      const marks = isCorrect ? 1 : 0;
-    
-      // Add the marks to the state
-      setMark((prevMark)=>{
-         return prevMark + marks;
-      });
-    
+      
       if (activeStep === 9) {
-         setLoading(true);
-         const marksDetails = doc(db, "user", id || '');
-         const markSnap = await getDoc(marksDetails);
-
-         if (markSnap.exists()) {
-            const { quiz_took } = markSnap.data();
-            const reExam = quiz_took.find((exam: examState) => exam?.quizId === eid)
-
-            if (reExam?.quizId === eid) {
-               const userRef = doc(db, "user", id || '');
-               const userDoc = await getDoc(userRef);
-               const quizzes = userDoc.data()?.quiz_took;               
-               const quizIndex = quizzes.findIndex(
-                  (quiz: examState) => quiz.quizId === eid
-                );
-
-                quizzes[quizIndex].mark = examDetails.mark;
-               await updateDoc(userRef, { quiz_took: quizzes })
-               .then(()=> {
-                  setLoading(false);
-                  navigate(`/quiz/${eid}/completed`);
-                })
-                .catch((error)=>{
-                  const errorCode = error.code;
-                  const errorMessage = error.message;
-                  setLoading(false);
-                  toast.error(`${errorCode} : ${errorMessage}`);
-                });
-            } else{
-               let markDetails = [...quiz_took, {
-                   bache: examDetails.bache,
-                   title: examDetails.title,
-                   quizId: examDetails.quizId,
-                   mark: `${examDetails.mark}`,
-                 }];
-    
-                await updateDoc(marksDetails, {
-                   quiz_took: markDetails,
-                 })
-                 .then(()=> {
-                   setLoading(false);
-                   navigate(`/quiz/${eid}/completed`);
-                 })
-                 .catch((error)=>{
-                   const errorCode = error.code;
-                   const errorMessage = error.message;
-                   setLoading(false);
-                   toast.error(`${errorCode} : ${errorMessage}`);
-                 });
-            }
-            
-         }
+         navigate(`/quiz/${eid}/practiced`);
       }
 
       setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -149,12 +71,8 @@ const ExamPractice: React.FC = () => {
          return newSkipped;
       });
 
-      setMark((prevMark)=>{
-         return prevMark + 0;
-      });
-
       if (activeStep === 9) {
-         navigate(`/quiz/${eid}/completed`);         
+         navigate(`/quiz/${eid}/practiced`);         
       }
   };
 
@@ -231,7 +149,7 @@ const ExamPractice: React.FC = () => {
                            Skip
                         </Button>
                         <Button onClick={handleNext}>
-                           {activeStep === 9 ? loading ? 'Finishing...' : 'Finish' : 'Next'}
+                           {activeStep === 9 ? 'Finish' : 'Next'}
                         </Button>
                   </Box>
                </React.Fragment>
