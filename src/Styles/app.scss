@@ -70,6 +70,30 @@ ul.MuiList-root.MuiList-padding.css-h4y409-MuiList-root {
    width: 100% !important;
 }
 
+ul.MuiList-root.MuiList-padding.css-1ontqvh {
+   height: 550px;
+   
+   a{
+      text-decoration: none;
+      color: #20222E;
+
+      &.active, &.active li{
+         background-color: #F7F8FC;
+         color: #3751FF;
+         .css-b43g5d {
+            font-weight: 600;
+        }
+
+         svg.MuiSvgIcon-root.MuiSvgIcon-fontSizeMedium.css-i4bv87-MuiSvgIcon-root {
+            color: #3751FF;
+        }
+      }
+   }
+}
+
+.css-o44hc9 {
+   width: 100% !important;
+}
 
 // Media Query for CSS
 /* Responsive Media Query */

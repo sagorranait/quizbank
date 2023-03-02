@@ -1,19 +1,17 @@
 import { Navigate, useLocation } from "react-router-dom";
 import { useAppSelector } from "./app/store";
-import Loading from "./Components/Loading";
 
 interface RequireAuthProps{
    children: React.ReactNode;
 }
 
 const RequireAuth: React.FC<RequireAuthProps> = ({ children }) => {
-   const {user, loading} = useAppSelector(state => state.userData);
+   const {user} = useAppSelector(state => state.userData);
+   console.log(user);
    
    let location = useLocation();
    
-   if (loading) { return <Loading/> }
-   
-   if (!user) { return <Navigate to="/login" state={{ from: location }} replace /> }
+   if (!user.id) { return <Navigate to="/sign-in" state={{ from: location }} replace /> }
 
    return <>{children}</>;
 }

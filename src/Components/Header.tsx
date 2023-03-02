@@ -39,7 +39,18 @@ const Header: React.FC<Props> = (props) => {
     signOut(auth)
     .then(() => {
       setLoading(false);
-      dispatch(storeUser({id: null, name: null, email: null}));
+      dispatch(
+        storeUser({
+          id: '', 
+          name: '', 
+          email: '',
+          phone: '', 
+          address: '', 
+          city: '', 
+          zip_code: '', 
+          photo_url: '',
+          quiz_took: [],
+        }));
       toast.success('Successfully Sign-Out!');
       navigate('/');
     })

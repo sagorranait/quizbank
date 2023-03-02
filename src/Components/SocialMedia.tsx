@@ -65,9 +65,26 @@ const SocialMedia: React.FC = () => {
                await setDoc(doc(db, "user", user.uid), {
                   name: user.displayName,
                   email: user.email,
+                  phone: '', 
+                  address: '', 
+                  city: '', 
+                  zip_code: '', 
+                  photo_url: '',
                   quiz_took: [],
                 });
-                dispatch(storeUser({id: uid, name: user.displayName, email: user.email}));
+                dispatch(
+                  storeUser({
+                     id: uid, 
+                     name: user.displayName, 
+                     email: user.email,
+                     phone: '', 
+                     address: '', 
+                     city: '', 
+                     zip_code: '', 
+                     photo_url: '',
+                     quiz_took: [],
+                  })
+               );
             }
          }
 
