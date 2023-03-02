@@ -9,6 +9,7 @@ export interface UserInfo{
    address?: string | null;
    city?: string | null;
    zip_code?: string | null;
+   quiz_took?: [] | null;
 }
 
 interface UserState{
@@ -26,6 +27,7 @@ const initialState: UserState = {
       address: '',
       city: '',
       zip_code: '',
+      quiz_took: []
    },
    loading: false,
 }
@@ -45,6 +47,7 @@ const userSlice = createSlice({
             address: action.payload.address,
             city: action.payload.city,
             zip_code: action.payload.zip_code,
+            quiz_took: action.payload.quiz_took,
          }
      },
      loadingState: (state) => {

@@ -21,7 +21,7 @@ interface examState {
    bache: string | null,
    title: string | null,
    quizId: string | null,
-   mark: string | null,
+   mark: number | null,
  }
 
 const Exam: React.FC = () => {
@@ -116,7 +116,7 @@ const Exam: React.FC = () => {
                    bache: examDetails.bache,
                    title: examDetails.title,
                    quizId: examDetails.quizId,
-                   mark: `${examDetails.mark}`,
+                   mark: examDetails.mark,
                  }];
     
                 await updateDoc(marksDetails, {

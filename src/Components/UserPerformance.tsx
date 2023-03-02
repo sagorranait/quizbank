@@ -6,15 +6,24 @@ import {
   Typography
 } from '@mui/material';
 import StarIcon from '@mui/icons-material/Star';
-
 import Reward from '../Assets/reward.png';
-import CSSLogo from '../Assets/quiz/css.png';
-import HTMLogo from '../Assets/quiz/html.png';
-import ReactLogo from '../Assets/quiz/react.png';
-import JavaScriptLogo from '../Assets/quiz/javascript.png';
 import MarkChart from './MarkChart';
+import { useAppSelector } from '../app/store';
+
+interface examState {
+  bache: string,
+  title: string,
+  quizId: string,
+  mark: number,
+}
 
 const UserPerformance: React.FC = () => {
+  const { quiz_took } = useAppSelector(state => state.userData.user);
+  const baches =  quiz_took?.filter((quiz: examState) => quiz.mark > 5 ) || [];
+  const sum = quiz_took?.reduce((accumulator: number, currentValue: examState) => {
+    return accumulator + currentValue.mark;
+  }, 0);  
+
   return (
    <Box component='div' className='user-quiz-performance' sx={{p: {xs: '0px', sm: '0px', md: '70px 50px 0px', lg: '20px 50px 0px', xl: '50px 50px 0px',}}}>
       <Grid container spacing={2}>
@@ -42,34 +51,22 @@ const UserPerformance: React.FC = () => {
               p: '20px 0',
               flexWrap: 'wrap'
             }}>
-              <Avatar alt="CSSLogo" src={CSSLogo} sx={{
-                width: {xs: '40px', sm: '40px', md: '20px', lg: '40px'},  
-                height: {xs: '40px', sm: '40px', md: '20px', lg: '40px'},
-                borderRadius: '0px', 
-                border: 'none'
-                }} />
-              <Avatar alt="HTMLogo" src={HTMLogo} sx={{
-                width: {xs: '40px', sm: '40px', md: '20px', lg: '40px'},  
-                height: {xs: '40px', sm: '40px', md: '20px', lg: '40px'},
-                borderRadius: '0px', 
-                border: 'none'
-                }} />
-              <Avatar alt="ReactLogo" src={ReactLogo} sx={{
-                width: {xs: '40px', sm: '40px', md: '20px', lg: '40px'},  
-                height: {xs: '40px', sm: '40px', md: '20px', lg: '40px'},
-                borderRadius: '0px', 
-                border: 'none'
-                }} />
-              <Avatar alt="JavaScriptLogo" src={JavaScriptLogo} sx={{
-                width: {xs: '40px', sm: '40px', md: '20px', lg: '40px'},  
-                height: {xs: '40px', sm: '40px', md: '20px', lg: '40px'},
-                borderRadius: '0px', 
-                border: 'none'
-                }} />
-              <Avatar sx={{
-                width: {xs: '40px', sm: '40px', md: '48px', lg: '40px'},  
-                height: {xs: '40px', sm: '40px', md: '48px', lg: '40px'},
-              }}>6+</Avatar>
+              {baches?.length > 0 ? (
+                baches.map((data: examState, index: number) => <Avatar key={index} alt={data.title} src={data.bache} sx={{
+                  width: {xs: '40px', sm: '40px', md: '20px', lg: '40px'},  
+                  height: {xs: '40px', sm: '40px', md: '20px', lg: '40px'},
+                  borderRadius: '0px', 
+                  border: 'none'
+                }} />)                
+              ) : (
+                <Typography sx={{textAlign: 'center'}}>You haven't earn any bache. Please give a test to earn a bache.</Typography>
+              )}
+              {baches?.length > 4 ? (
+                <Avatar sx={{
+                  width: {xs: '40px', sm: '40px', md: '48px', lg: '40px'},  
+                  height: {xs: '40px', sm: '40px', md: '48px', lg: '40px'},
+                }}>{baches?.length - 4 }+</Avatar>
+              ) : undefined}              
           </Box>
           <Typography variant='h6' fontWeight='600' sx={{fontSize: {xs: '1.25rem', sm: '1.25rem', md: '1rem', lg: '1.25rem'}}}>Quiz Badges</Typography>
         </Box>
@@ -99,7 +96,7 @@ const UserPerformance: React.FC = () => {
                 <StarIcon sx={{color: '#FFC800', fontSize: 23}}/>
               </Box>
               <Box component='div'>
-                <Typography variant='h6' fontWeight='600' sx={{lineHeight: .8}}>80.00</Typography>
+                <Typography variant='h6' fontWeight='600' sx={{lineHeight: .8}}>{((sum || 0) / (quiz_took?.length || 0))}</Typography>
                 <Typography variant='body2' >Avg Quiz Mark</Typography>
               </Box>
             </Box>
