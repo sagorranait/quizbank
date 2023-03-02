@@ -96,7 +96,7 @@ const UserPerformance: React.FC = () => {
                 <StarIcon sx={{color: '#FFC800', fontSize: 23}}/>
               </Box>
               <Box component='div'>
-                <Typography variant='h6' fontWeight='600' sx={{lineHeight: .8}}>{((sum || 0) / (quiz_took?.length || 0))}</Typography>
+                <Typography variant='h6' fontWeight='600' sx={{lineHeight: .8}}>{ baches?.length > 0 ? (sum || 0) / (quiz_took?.length || 0) : '0.0'}</Typography>
                 <Typography variant='body2' >Avg Quiz Mark</Typography>
               </Box>
             </Box>

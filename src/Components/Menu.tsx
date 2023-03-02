@@ -9,14 +9,13 @@ import {
    ListItemButton, 
    Typography
  } from '@mui/material';
+ import Motivation from './Motivation';
+ import { useAppSelector } from '../app/store';
  import PersonOutlinedIcon from '@mui/icons-material/PersonOutlined';
  import QuizOutlinedIcon from '@mui/icons-material/QuizOutlined';
- import EmojiEventsOutlinedIcon from '@mui/icons-material/EmojiEventsOutlined';
  import HailOutlinedIcon from '@mui/icons-material/HailOutlined';
- import ConnectWithoutContactOutlinedIcon from '@mui/icons-material/ConnectWithoutContactOutlined';
  import LiveHelpOutlinedIcon from '@mui/icons-material/LiveHelpOutlined';
-import Motivation from './Motivation';
-import { useAppSelector } from '../app/store';
+ import ConnectWithoutContactOutlinedIcon from '@mui/icons-material/ConnectWithoutContactOutlined';
 
 const Menu: React.FC = () => {
    const user = useAppSelector(state => state?.userData.user);
@@ -62,21 +61,6 @@ const Menu: React.FC = () => {
                   <QuizOutlinedIcon/>
                </ListItemIcon>
                      <ListItemText primary="Quizzes" />
-               </ListItemButton>
-            </ListItem>
-         </NavLink>
-         <NavLink
-            to={'/leader-board'}
-            className={({ isActive }) => {
-               return isActive ? "active" : "";
-            }}
-         >
-            <ListItem disablePadding>
-               <ListItemButton>
-               <ListItemIcon>
-                  <EmojiEventsOutlinedIcon/>
-               </ListItemIcon>
-               <ListItemText primary="Leader Board" />
                </ListItemButton>
             </ListItem>
          </NavLink>
