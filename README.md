@@ -5,8 +5,8 @@ The QuizBank website is an excellent resource for anyone looking to test their p
 Live Link : [https://quiz-bank-react.web.app/](https://quiz-bank-react.web.app)
 
 ### Available Languages and Packages
-**Languages :**. TypeScript, React (TypeScript), SCSS, etc.
-**Packages :**. React Redux, React Router Dom (6.4), React Slick Slider, Recharts, React Hook Form, React Hot Toast, Firebase, MUI (Material UI), etc.
+**Languages :** TypeScript, React (TypeScript), SCSS, etc. <br>
+**Packages :** React Redux, React Router Dom (6.4), React Slick Slider, Recharts, React Hook Form, React Hot Toast, Firebase, MUI (Material UI), etc.
 
 ### Features
 - I've decided to use MUI (Material UI) for QuizBank UI. Its offers a comprehensive suite of UI tools to help you ship new features faster.
