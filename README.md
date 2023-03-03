@@ -1,46 +1,17 @@
-# Getting Started with Create React App
+# QuizBank
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+The QuizBank website is an excellent resource for anyone looking to test their programming skills and knowledge from anywhere with an internet connection. With a user-friendly interface, students can take exams covering a wide range of programming concepts, such as data structures, algorithms, object-oriented programming, and web development. These exams are typically designed to be challenging, but also informative, providing students with valuable feedback on their progress.
 
-## Available Scripts
+Live Link : [https://quiz-bank-react.web.app/](https://quiz-bank-react.web.app)
 
-In the project directory, you can run:
+### Available Languages and Packages
+**Languages :**. TypeScript, React (TypeScript), SCSS, etc.
+**Packages :**. React Redux, React Router Dom (6.4), React Slick Slider, Recharts, React Hook Form, React Hot Toast, Firebase, MUI (Material UI), etc.
 
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Features
+- I've decided to use MUI (Material UI) for QuizBank UI. Its offers a comprehensive suite of UI tools to help you ship new features faster.
+- Allows users to track their progress over time, seeing how their performance changes with practice and experience.
+- It has a feature that provides digital Bache to examiners who passes the exams, demonstrating their proficiency in programming.
+- This website is mobile-friendly and compatible with various devices, including smartphones and tablets, for students to take exams on the go.
+- For multi pages view, I've used React Router Dom v6.4 for this.
+- I've selected React Hot Toast to display error and success messages. If you provided any incorrect information, it will assist you in rectifying it.
