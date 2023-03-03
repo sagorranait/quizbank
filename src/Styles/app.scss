@@ -42,21 +42,6 @@ ul.MuiList-root.MuiList-padding.css-h4y409-MuiList-root {
    }
 }
 
-.topleaders-table{
-   thead{
-      tr{
-         height: 45px;
-         padding: 10px 0px;
-      }
-   }
-   
-   tbody{
-      tr{
-         height: 45px;
-      }
-   }
-}
-
 .quizSlider{
    .slick-slide {
       width: 300px;
@@ -84,7 +69,7 @@ ul.MuiList-root.MuiList-padding.css-1ontqvh {
             font-weight: 600;
         }
 
-         svg.MuiSvgIcon-root.MuiSvgIcon-fontSizeMedium.css-i4bv87-MuiSvgIcon-root {
+         svg.MuiSvgIcon-root.MuiSvgIcon-fontSizeMedium {
             color: #3751FF;
         }
       }
@@ -101,14 +86,24 @@ ul.MuiList-root.MuiList-padding.css-1ontqvh {
    ul.MuiList-root.MuiList-padding.css-h4y409-MuiList-root {
       height: 450px;
    }
+   
+   ul.MuiList-root.MuiList-padding.css-1ontqvh {
+      height: 450px;
+   }
+
    .css-1lniyfm-MuiGrid-root>.MuiGrid-item {
       padding-left: 10px !important;
       flex-basis: 100% !important;
   }
+
+  .css-rep5dz {
+      flex-basis: 100% !important;
+      max-width: 100% !important;
+   }
+
   .quizSlider .slick-slide {
       padding: 0px 0px 10px;
    }
-
 
    .slick-slider {
       width: 272px;
@@ -117,34 +112,58 @@ ul.MuiList-root.MuiList-padding.css-1ontqvh {
   }
 
   .css-yayxwl-MuiPaper-root-MuiCard-root {
-   min-width: 257px !important;
-   width: 257px !important;
-   margin-left: 10px;
-}
-
-
+      min-width: 257px !important;
+      width: 257px !important;
+      margin-left: 10px;
+   }
 
 }
+
 @media screen and (min-width: 576px) and (max-width: 767.99px) {
    ul.MuiList-root.MuiList-padding.css-h4y409-MuiList-root {
       height: 450px;
    }
+
+   ul.MuiList-root.MuiList-padding.css-1ontqvh {
+      height: 450px;
+   }
+
    .css-1lniyfm-MuiGrid-root>.MuiGrid-item {
       padding-left: 10px !important; 
       flex-basis: 100% !important;
   }
+  .css-rep5dz {
+      flex-basis: 100% !important;
+      max-width: 100% !important;
+   }
+
   .quizSlider .slick-slide {
       padding: 0px 0px 10px;
    }
+   .css-vie9in {
+      justify-content: start !important;
+  }
+   .css-1tsx32j {
+      width: 285px !important;
+  }
 }
 @media screen and (min-width: 768px) and (max-width: 992.99px) {
    ul.MuiList-root.MuiList-padding.css-h4y409-MuiList-root {
       height: 450px;
    }
+
+   ul.MuiList-root.MuiList-padding.css-1ontqvh {
+      height: 450px;
+   }
+
    .css-1lniyfm-MuiGrid-root>.MuiGrid-item {
       padding-left: 10px !important;
       flex-basis: 100% !important;
   }
+  .css-rep5dz {
+      flex-basis: 100% !important;
+      max-width: 100% !important;
+   }
   .quizSlider .slick-slide {
       padding: 0px 0px 10px;
    }
@@ -153,10 +172,14 @@ ul.MuiList-root.MuiList-padding.css-1ontqvh {
    ul.MuiList-root.MuiList-padding.css-h4y409-MuiList-root {
       height: 450px;
    }
+
+   ul.MuiList-root.MuiList-padding.css-1ontqvh {
+      height: 450px;
+   }
+
    .css-1lniyfm-MuiGrid-root>.MuiGrid-item {
       padding-left: 10px !important;
       flex-basis: 100% !important;
   }
 }
-@media screen and (min-width: 1201px) and (max-width: 1399.99px) {}
 /* Responsive Media Query */

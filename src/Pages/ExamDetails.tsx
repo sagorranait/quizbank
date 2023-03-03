@@ -55,26 +55,27 @@ const ExamDetails: React.FC = () => {
       }else{
          setPracticeLoading(true);         
       }
-
-      await updateDoc(docRef, {
-         user_attend: data,
-       })
-       .then(()=>{
-         if (type === 'start') {
+      if (id !== '') {
+         await updateDoc(docRef, {
+            user_attend: data,
+          })
+          .then(()=>{
+            if (type === 'start') {
+               setLoading(false);
+               navigate(`/quiz/${details[0].id}/start`);            
+            }else{
+               setPracticeLoading(false);
+               navigate(`/quiz/${details[0].id}/practice`); 
+            }
+          })
+          .catch((error)=>{
+            const errorCode = error.code;
+            const errorMessage = error.message;
             setLoading(false);
-            navigate(`/quiz/${details[0].id}/start`);            
-         }else{
             setPracticeLoading(false);
-            navigate(`/quiz/${details[0].id}/practice`); 
-         }
-       })
-       .catch((error)=>{
-         const errorCode = error.code;
-         const errorMessage = error.message;
-         setLoading(false);
-         setPracticeLoading(false);
-         toast.error(`${errorCode} : ${errorMessage}`);
-       });
+            toast.error(`${errorCode} : ${errorMessage}`);
+          });
+      }
     }
    
   return (
